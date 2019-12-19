@@ -13,8 +13,8 @@ const App = () => {
       <Container text textAlign="center">
         <Header size="huge">Algo</Header>
       </Container>
-      <Container columns={2}>
-        <Grid stackable>
+      <Container fluid>
+        <Grid columns={2} stackable>
           <Grid.Column width={3}>
             <MenuContainer handleClick={handleClick} />
           </Grid.Column>
