@@ -1,27 +1,33 @@
-import React from "react";
-import { Grid } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Container, Grid } from "semantic-ui-react";
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
-const AlgorithmsContainer = () => {
-  const buildAlgorithmCards = (algos = [1, 2, 3, 4]) => {
+const AlgorithmsContainer = ({ selectedAlgos, removeAlgo }) => {
+  const [algos, setAlgos] = useState([]);
+  const [step, setStep] = useState(0);
+
+  const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
+    const algos = selectedAlgos;
     return algos.map(algo => {
       return (
         <Grid.Column width={8}>
-          <AlgorithmCard key={algo} algo={algo} />
+          <AlgorithmCard key={algo.key} algo={algo} removeAlgo={removeAlgo} />
         </Grid.Column>
       );
     });
   };
 
   return (
-    <Grid stackable stretched={true}>
-      <Grid.Column width={16}>
-        <ControllerContainer key={"ControllerContainer"} />
-      </Grid.Column>
-      {buildAlgorithmCards()}
-    </Grid>
+    <Container>
+      <Grid stackable stretched={true}>
+        <Grid.Column width={16}>
+          <ControllerContainer key={"ControllerContainer"} />
+        </Grid.Column>
+        {buildAlgorithmCards()}
+      </Grid>
+    </Container>
   );
 };
 

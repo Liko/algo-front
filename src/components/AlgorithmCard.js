@@ -2,11 +2,12 @@ import React from "react";
 import { Card } from "semantic-ui-react";
 import AlgorithmDisplayBar from "./AlgorithmDisplayBar";
 
-const AlgorithmCard = () => {
+const AlgorithmCard = ({ algo, removeAlgo }) => {
   return (
-    <Card fluid>
+    <Card fluid onClick={() => removeAlgo(algo.key)}>
       <Card.Content>
-        <p>AlgorithmCard</p>
+        <p>{algo.name}</p>
+        <AlgorithmDisplayBar />
         <AlgorithmDisplayBar />
       </Card.Content>
     </Card>
