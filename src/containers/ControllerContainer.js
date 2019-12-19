@@ -1,9 +1,10 @@
 import React from "react";
+import { Button } from "semantic-ui-react";
 
 const ControllerContainer = () => {
   return (
     <div>
-      <p>ControllerContainer</p>
+      <Button fluid>ControllerContainer</Button>
     </div>
   );
 };

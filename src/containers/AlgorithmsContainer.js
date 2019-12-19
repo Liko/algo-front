@@ -5,20 +5,25 @@ import AlgorithmCard from "../components/AlgorithmCard";
 
 const AlgorithmsContainer = () => {
   return (
-    <Container>
-      <p>AlgorithmsContainer</p>
-      <ControllerContainer />
-      <Grid columns="two">
-        <Grid.Column>
-          <AlgorithmCard />
+    <div>
+      <Grid stackable>
+        <Grid.Column width={16}>
+          <ControllerContainer />
+        </Grid.Column>
+        <Grid.Column width={8}>
           <AlgorithmCard />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column width={8}>
           <AlgorithmCard />
+        </Grid.Column>
+        <Grid.Column width={8}>
+          <AlgorithmCard />
+        </Grid.Column>
+        <Grid.Column width={8}>
           <AlgorithmCard />
         </Grid.Column>
       </Grid>
-    </Container>
+    </div>
   );
 };
 

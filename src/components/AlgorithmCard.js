@@ -4,7 +4,7 @@ import AlgorithmDisplayBar from "./AlgorithmDisplayBar";
 
 const AlgorithmCard = () => {
   return (
-    <Card>
+    <Card fluid>
       <Card.Content>
         <p>AlgorithmCard</p>
         <AlgorithmDisplayBar />
