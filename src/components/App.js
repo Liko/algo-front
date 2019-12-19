@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
 import MenuContainer from "../containers/MenuContainer";
 import AlgorithmsContainer from "../containers/AlgorithmsContainer";
 
 const App = () => {
-  const handleClick = () => {
-    console.log("Click!");
+  const [algos, setAlgos] = useState([]);
+
+  const handleClick = algoName => {
+    const newAlgos = [...algos, { name: algoName }];
+    setAlgos(newAlgos);
   };
 
   return (
