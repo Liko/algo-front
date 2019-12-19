@@ -1,9 +1,14 @@
 import React from "react";
+import MenuContainer from "../containers/MenuContainer";
+import AlgorithmsContainer from "../containers/AlgorithmsContainer";
 
 function App() {
   return (
     <div className="App">
-      <p>Hello World</p>
+      <div className="ui container">
+        <MenuContainer />
+        <AlgorithmsContainer />
+      </div>
     </div>
   );
 }
