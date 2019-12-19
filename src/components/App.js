@@ -2,15 +2,17 @@ import React from "react";
 import MenuContainer from "../containers/MenuContainer";
 import AlgorithmsContainer from "../containers/AlgorithmsContainer";
 
-function App() {
+const App = () => {
+  const handleClick = () => {
+    console.log("Click!");
+  };
+
   return (
     <div className="App">
-      <div className="ui container">
-        <MenuContainer />
-        <AlgorithmsContainer />
-      </div>
+      <MenuContainer handleClick={handleClick} />
+      <AlgorithmsContainer />
     </div>
   );
-}
+};
 
 export default App;
