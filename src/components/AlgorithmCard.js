@@ -1,21 +1,19 @@
 import React, { useState, useEffect, memo } from "react";
 import { Card } from "semantic-ui-react";
-import AlgorithmDisplayBar from "./AlgorithmDisplayBar";
-
-import "./AlgorithmCard.css";
-
 import { useTransition } from "react-spring";
+import AlgorithmDisplayBar from "./AlgorithmDisplayBar";
+import "./AlgorithmCard.css";
 
 const AlgorithmCard = ({ algo, removeAlgo, step }) => {
   const [currentData, setCurrentData] = useState(algo.steps[step]);
+
   const maxData = Math.max(...currentData);
+  let height = 0;
+  let barHeight = (0.36 * window.innerHeight) / currentData.length;
 
   useEffect(() => {
     setCurrentData(algo.steps[step]);
   }, [step]);
-
-  let height = 0;
-  let barHeight = (0.36 * window.innerHeight) / currentData.length;
 
   const transitions = useTransition(
     currentData.map(data => ({
