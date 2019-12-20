@@ -3,13 +3,11 @@ import { Container, Grid } from "semantic-ui-react";
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
-const AlgorithmsContainer = ({ selectedAlgos, removeAlgo }) => {
-  const [algos, setAlgos] = useState([]);
+const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   const [step, setStep] = useState(0);
 
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
-    const algos = selectedAlgos;
     return algos.map(algo => {
       return (
         <Grid.Column width={8}>

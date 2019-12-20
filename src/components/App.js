@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
 import MenuContainer from "../containers/MenuContainer";
 import AlgorithmsContainer from "../containers/AlgorithmsContainer";
+import bubbleSort from "../algos/bubbleSort";
 import md5 from "md5"; // This library let's us generate a hashed key for algos
 
 const App = () => {
   const [algos, setAlgos] = useState([]);
 
+  const algoMap = {
+    bubbleSort: bubbleSort()
+  };
+
   const menuSelect = algoName => {
-    const algo = { name: algoName, key: md5(Date.now()) };
+    const algo = {
+      name: algoName,
+      key: md5(Date.now()),
+      steps: algoMap.bubbleSort
+    };
     const updatedAlgos = [...algos, algo];
     setAlgos(updatedAlgos);
   };
@@ -29,10 +38,7 @@ const App = () => {
             <MenuContainer menuSelect={menuSelect} />
           </Grid.Column>
           <Grid.Column width={12}>
-            <AlgorithmsContainer
-              selectedAlgos={algos}
-              removeAlgo={removeAlgo}
-            />
+            <AlgorithmsContainer algos={algos} removeAlgo={removeAlgo} />
           </Grid.Column>
         </Grid>
       </Container>
