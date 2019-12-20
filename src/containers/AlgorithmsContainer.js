@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Container, Grid, Segment, Label, GridColumn } from "semantic-ui-react";
+import { Slider } from "react-semantic-ui-range";
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
 const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   const [step, setStep] = useState(0);
-  let intervalSpeed = 500;
+  const [intervalSpeed, setIntervalSpeed] = useState(500);
 
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
@@ -58,6 +59,29 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
         <Grid.Column width={16}>
           <ControllerContainer key={"ControllerContainer"} />
         </Grid.Column>
+        <Grid.Column width={12}>
+          <Segment>
+            <p>
+              <Slider
+                color="orange"
+                inverted={false}
+                settings={{
+                  start: intervalSpeed,
+                  min: 100,
+                  max: 2000,
+                  step: 100,
+                  onChange: value => setIntervalSpeed(value)
+                }}
+              />
+            </p>
+          </Segment>
+        </Grid.Column>
+        <GridColumn width={4}>
+          <Label color="orange">
+            <p>Interval:</p>
+            <p>{intervalSpeed / 1000}s </p>
+          </Label>
+        </GridColumn>
         {buildAlgorithmCards()}
       </Grid>
     </Container>
