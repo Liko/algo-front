@@ -34,4 +34,4 @@ const bubbleSort = (size = 10) => {
   return steps;
 };
 
-bubbleSort();
+export default bubbleSort;
