@@ -5,6 +5,8 @@ import AlgorithmsContainer from "../containers/AlgorithmsContainer";
 import bubbleSort from "../algos/bubbleSort";
 import md5 from "md5"; // This library let's us generate a hashed key for algos
 
+import { generateSteps } from "../util/algorithmHelper";
+
 const App = () => {
   const [algos, setAlgos] = useState([]);
 
@@ -13,11 +15,12 @@ const App = () => {
   };
 
   const menuSelect = algoName => {
-    const algo = {
-      name: algoName,
-      key: md5(Date.now()),
-      steps: algoMap.bubbleSort
+    const algo = { 
+      name: algoName, 
+      key: md5(Date.now()), 
+      steps: generateSteps(algoName) 
     };
+
     const updatedAlgos = [...algos, algo];
     setAlgos(updatedAlgos);
   };
