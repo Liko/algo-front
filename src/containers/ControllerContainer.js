@@ -1,10 +1,15 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
+import IntervalSlider from "../components/IntervalSlider";
 
-const ControllerContainer = () => {
+const ControllerContainer = ({ intervalSpeed, setIntervalSpeed }) => {
   return (
     <div>
       <Button fluid>ControllerContainer</Button>
+      <IntervalSlider
+        intervalSpeed={intervalSpeed}
+        setIntervalSpeed={setIntervalSpeed}
+      />
     </div>
   );
 };
