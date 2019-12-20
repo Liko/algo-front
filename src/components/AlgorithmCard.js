@@ -12,7 +12,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
   }, [step]);
 
   const mapBars = () =>
-    currentData.map(value => <AlgorithmDisplayBar value={value} />);
+    currentData.map(value => <AlgorithmDisplayBar key={value} value={value} />);
 
   return (
     <Card fluid onClick={() => removeAlgo(algo.key)}>

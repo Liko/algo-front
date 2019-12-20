@@ -29,11 +29,16 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
     setStep(step + 1);
   }, intervalSpeed);
 
+  const getSafeStep = algo => {
+    let safeStep = step;
+    if (step >= algo.steps.length) safeStep = [algo.steps.length - 1];
+    return safeStep;
+  };
+
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
     return algos.map(algo => {
-      let safeStep = step;
-      if (step >= algo.steps.length) safeStep = [algo.steps.length - 1];
+      const safeStep = getSafeStep(algo);
       return (
         <Grid.Column key={algo.key} width={8}>
           <AlgorithmCard algo={algo} removeAlgo={removeAlgo} step={safeStep} />
