@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid } from "semantic-ui-react";
+
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
 const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   const [step, setStep] = useState(0);
-  let intervalSpeed = 500;
+  const [intervalSpeed, setIntervalSpeed] = useState(500);
 
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
@@ -56,8 +57,13 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
       <Grid stackable stretched={true}>
         <button onClick={reset}>Reset</button>
         <Grid.Column width={16}>
-          <ControllerContainer key={"ControllerContainer"} />
+          <ControllerContainer
+            intervalSpeed={intervalSpeed}
+            setIntervalSpeed={setIntervalSpeed}
+            key={"ControllerContainer"}
+          />
         </Grid.Column>
+
         {buildAlgorithmCards()}
       </Grid>
     </Container>
