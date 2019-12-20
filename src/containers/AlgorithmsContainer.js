@@ -11,7 +11,7 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
     return algos.map(algo => {
       return (
         <Grid.Column key={algo.key} width={8}>
-          <AlgorithmCard algo={algo} removeAlgo={removeAlgo} />
+          <AlgorithmCard algo={algo} removeAlgo={removeAlgo} step={step} />
         </Grid.Column>
       );
     });

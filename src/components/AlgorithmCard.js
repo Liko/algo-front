@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "semantic-ui-react";
 import AlgorithmDisplayBar from "./AlgorithmDisplayBar";
 
-const AlgorithmCard = ({ algo, removeAlgo }) => {
+const AlgorithmCard = ({ algo, removeAlgo, step }) => {
   return (
     <Card fluid onClick={() => removeAlgo(algo.key)}>
       <Card.Content>
