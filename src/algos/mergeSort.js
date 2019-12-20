@@ -26,8 +26,14 @@ const mergeSort = (size = 10) => {
       } else {
         array.push(right.shift());
       }
-      if ([...array, ...left, ...right].length === size)
+      let step = [...array, ...left, ...right];
+
+      if (
+        step.length === size &&
+        differentArray(step, steps[steps.length - 1])
+      ) {
         steps.push([...array, ...left, ...right]);
+      }
     }
 
     return [...array, ...left, ...right];
@@ -35,6 +41,10 @@ const mergeSort = (size = 10) => {
 
   mergeSortReal(array);
   return steps;
+};
+
+const differentArray = (arr1, arr2) => {
+  return !arr1.every((val, i) => val === arr2[i]);
 };
 
 export default mergeSort;
