@@ -6,7 +6,7 @@ const AlgorithmDisplayBar = ({ value, style }) => {
     <animated.div className="bar" style={style}>
       <div className="cell">
         <div className="details" style={{ backgroundColor: "orange" }}>
-          <h2 className="label">{value}</h2>
+          <h5 className="label">{value}</h5>
         </div>
       </div>
     </animated.div>
