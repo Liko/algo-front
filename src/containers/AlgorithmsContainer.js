@@ -29,6 +29,10 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
     setStep(step + 1);
   }, intervalSpeed);
 
+  const reset = () => {
+    setStep(0);
+  };
+
   const getSafeStep = algo => {
     let safeStep = step;
     if (step >= algo.steps.length) safeStep = [algo.steps.length - 1];
@@ -50,6 +54,7 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   return (
     <Container>
       <Grid stackable stretched={true}>
+        <button onClick={reset}>Reset</button>
         <Grid.Column width={16}>
           <ControllerContainer key={"ControllerContainer"} />
         </Grid.Column>
