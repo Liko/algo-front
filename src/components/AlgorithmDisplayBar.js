@@ -1,9 +1,17 @@
 import React from "react";
 
-const AlgorithmDisplayBar = () => {
+const AlgorithmDisplayBar = ({ value }) => {
   return (
-    <div>
-      <p>AlgorithmDisplayBar</p>
+    <div
+      style={{
+        backgroundColor: "orange",
+        display: "flex",
+        width: value * 10,
+        height: "20%",
+        margin: "0.1em"
+      }}
+    >
+      {value}
     </div>
   );
 };

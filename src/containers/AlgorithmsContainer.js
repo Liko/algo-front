@@ -5,7 +5,7 @@ import AlgorithmCard from "../components/AlgorithmCard";
 
 const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   const [step, setStep] = useState(0);
-  let intervalSpeed = 1000;
+  let intervalSpeed = 500;
 
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
@@ -32,9 +32,11 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
     return algos.map(algo => {
+      let safeStep = step;
+      if (step >= algo.steps.length) safeStep = [algo.steps.length - 1];
       return (
         <Grid.Column key={algo.key} width={8}>
-          <AlgorithmCard algo={algo} removeAlgo={removeAlgo} step={step} />
+          <AlgorithmCard algo={algo} removeAlgo={removeAlgo} step={safeStep} />
         </Grid.Column>
       );
     });
