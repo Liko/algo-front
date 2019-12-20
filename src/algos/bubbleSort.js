@@ -31,7 +31,6 @@ const bubbleSort = (size = 10) => {
       }
     }
   }
-  console.log(steps);
   return steps;
 };
 
