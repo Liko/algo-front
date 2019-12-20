@@ -1,18 +1,15 @@
 import React from "react";
+import { animated } from "react-spring";
 
-const AlgorithmDisplayBar = ({ value }) => {
+const AlgorithmDisplayBar = ({ value, style }) => {
   return (
-    <div
-      style={{
-        backgroundColor: "orange",
-        display: "flex",
-        width: value * 10,
-        height: "20%",
-        margin: "0.1em"
-      }}
-    >
-      {value}
-    </div>
+    <animated.div className="bar" style={style}>
+      <div className="cell">
+        <div className="details" style={{ backgroundColor: "orange" }}>
+          <h2 className="label">{value}</h2>
+        </div>
+      </div>
+    </animated.div>
   );
 };
 
