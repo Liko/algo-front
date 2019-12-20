@@ -10,8 +10,8 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
     // Make a card for each algorithm a user has selected
     return algos.map(algo => {
       return (
-        <Grid.Column width={8}>
-          <AlgorithmCard key={algo.key} algo={algo} removeAlgo={removeAlgo} />
+        <Grid.Column key={algo.key} width={8}>
+          <AlgorithmCard algo={algo} removeAlgo={removeAlgo} />
         </Grid.Column>
       );
     });
