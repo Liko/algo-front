@@ -1,28 +1,19 @@
+import { generateRandomArray } from "../util/algorithmHelper";
+
 const mergeSort = (size = 10) => {
-  // Build an array of a given size; this array will mutate
-  const arr = [];
-  for (let i = 1; i < size + 1; i++) {
-    arr.push(i);
-  }
-
-  // If the request is to sort one element, just return the element
-  if (size <= 1) return arr;
-
-  // Shuffle the built array using Dursetenfeld method
-  // Alternatively, could use _.js library's .shuffle() method
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
+  const array = generateRandomArray(size);
 
   // Initialize steps, which will keep track of array element positions at each cycle
-  const steps = [[...arr]];
+  const steps = [[...array]];
 
   const mergeSortReal = (array, half = array.length / 2) => {
+    //if the array length is less than 2, return, which will in the future invoke the merger method
     if (array.length < 2) return array;
 
+    //split the array in half
     const left = array.splice(0, half);
 
+    //recursively keep splitting the array in half until length of both left and right halves are less than two
     return merger(mergeSortReal(left), mergeSortReal(array));
   };
 
@@ -42,9 +33,7 @@ const mergeSort = (size = 10) => {
     return [...array, ...left, ...right];
   };
 
-  mergeSortReal(arr);
-  console.log(steps);
-  console.log(steps.length);
+  mergeSortReal(array);
   return steps;
 };
 
