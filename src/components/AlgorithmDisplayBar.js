@@ -1,15 +1,14 @@
 import React from "react";
 import { animated } from "react-spring";
 
-const AlgorithmDisplayBar = ({ item, sortedItem, style }) => {
+const AlgorithmDisplayBar = ({ item, color, style }) => {
   return (
     <animated.div className="bar" style={style}>
       <div className="cell">
         <div
           className="details"
           style={{
-            backgroundColor:
-              item.value === sortedItem.value ? "lightgreen" : "orange"
+            backgroundColor: color
           }}
         >
           <h5 className="label">{item.value}</h5>

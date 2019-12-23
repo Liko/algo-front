@@ -39,12 +39,19 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
     return `${(80 + item.value * 80) / maxData}%`;
   };
 
+  const calculateBarColor = (item, index) => {
+    if (item.status === "checking") return "yellow";
+    else if (item.status === "moving") return "salmon";
+    else if (item.value === lastStep[index].value) return "lightgreen";
+    else return "orange";
+  };
+
   const mapBars = () => {
     return transitions.map(({ item, props: { y, ...rest }, key }, index) => (
       <AlgorithmDisplayBar
         key={key}
         item={item}
-        sortedItem={lastStep[index]}
+        color={calculateBarColor(item, index)}
         style={{
           width: calculateBarWidth(item),
           zIndex: currentData.length - index,
