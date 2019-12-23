@@ -7,6 +7,8 @@ import "./AlgorithmCard.css";
 const AlgorithmCard = ({ algo, removeAlgo, step }) => {
   const [currentData, setCurrentData] = useState(algo.steps[step]);
 
+  const lastStep = algo.steps.slice(-1)[0];
+
   const maxData = Math.max(...currentData);
   let height = 0;
   let barHeight = (0.35 * window.innerHeight) / currentData.length;
@@ -37,6 +39,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
       <AlgorithmDisplayBar
         key={key}
         value={item.id}
+        sortedValue={lastStep[index]}
         style={{
           width: `${(80 + item.id * 80) / maxData}%`,
           zIndex: currentData.length - index,
