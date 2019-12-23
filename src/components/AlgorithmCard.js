@@ -9,7 +9,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
 
   const lastStep = algo.steps.slice(-1)[0];
 
-  const maxData = Math.max(...currentData);
+  const maxData = Math.max(...currentData.map(i => i.value));
   let height = 0;
   let barHeight = (0.35 * window.innerHeight) / currentData.length;
 
@@ -22,7 +22,8 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
       ...data,
       y: (height += barHeight) - barHeight,
       height: barHeight,
-      id: data
+      data: data,
+      id: data.value
     })),
     d => d.id,
     {
@@ -34,14 +35,18 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
     }
   );
 
+  const calculateBarWidth = item => {
+    return `${(80 + item.value * 80) / maxData}%`;
+  };
+
   const mapBars = () => {
     return transitions.map(({ item, props: { y, ...rest }, key }, index) => (
       <AlgorithmDisplayBar
         key={key}
-        value={item.id}
-        sortedValue={lastStep[index]}
+        item={item}
+        sortedItem={lastStep[index]}
         style={{
-          width: `${(80 + item.id * 80) / maxData}%`,
+          width: calculateBarWidth(item),
           zIndex: currentData.length - index,
           transform: y.interpolate(y => `translate3d(0,${y}px,0)`),
           ...rest
