@@ -15,7 +15,7 @@ const algoMap = {
 const createUniqueArray = size => {
   const arr = [];
   for (let i = 1; i < size + 1; i++) {
-    arr.push(i);
+    arr.push({ value: i, checking: false, moving: false });
   }
   return arr;
 };
