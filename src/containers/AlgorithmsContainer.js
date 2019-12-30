@@ -5,7 +5,6 @@ import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
 const AlgorithmsContainer = ({ algos, removeAlgo, incrementStep }) => {
-  // const [step, setStep] = useState(0);
   const [intervalSpeed, setIntervalSpeed] = useState(500);
 
   const useInterval = (callback, delay) => {

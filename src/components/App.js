@@ -25,19 +25,12 @@ const App = () => {
   };
 
   const incrementStep = () => {
+    // currentStep for each algo should either increment or remain at final step
     let updateAlgos = [...algos];
     updateAlgos.map(algo => {
-      // algo.currentStep <= algo.steps.length
-      //   ? (algo.currentStep += 1)
-      //   : (algo.currentStep = algo.steps.length - 1);
       algo.currentStep += 1;
       if (algo.currentStep >= algo.steps.length)
         algo.currentStep = algo.steps.length - 1;
-      // if (algo.currentStep < algo.steps.length) {
-      //   algo.currentStep += 1;
-      // } else {
-      //   algo.currentStep = algo.steps.length - 1;
-      // }
     });
     setAlgos(updateAlgos);
   };
