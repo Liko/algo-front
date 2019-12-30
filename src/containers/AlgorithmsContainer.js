@@ -4,8 +4,7 @@ import { Container, Grid } from "semantic-ui-react";
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
-const AlgorithmsContainer = ({ algos, removeAlgo }) => {
-  const [step, setStep] = useState(0);
+const AlgorithmsContainer = ({ algos, removeAlgo, incrementStep }) => {
   const [intervalSpeed, setIntervalSpeed] = useState(500);
 
   const useInterval = (callback, delay) => {
@@ -27,26 +26,25 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   };
 
   useInterval(() => {
-    setStep(step + 1);
+    incrementStep();
   }, intervalSpeed);
 
-  const reset = () => {
-    setStep(0);
-  };
-
-  const getSafeStep = algo => {
-    let safeStep = step;
-    if (step >= algo.steps.length) safeStep = [algo.steps.length - 1];
-    return safeStep;
-  };
+  // const reset = () => {
+  //   // set all algos step to 0
+  //   setStep(0);
+  // };
 
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
+
     return algos.map(algo => {
-      const safeStep = getSafeStep(algo);
       return (
         <Grid.Column key={algo.key} width={8}>
-          <AlgorithmCard algo={algo} removeAlgo={removeAlgo} step={safeStep} />
+          <AlgorithmCard
+            algo={algo}
+            removeAlgo={removeAlgo}
+            step={[algo.currentStep]}
+          />
         </Grid.Column>
       );
     });
@@ -55,7 +53,7 @@ const AlgorithmsContainer = ({ algos, removeAlgo }) => {
   return (
     <Container>
       <Grid stackable stretched={true}>
-        <button onClick={reset}>Reset</button>
+        {/* <button onClick={reset}>Reset</button> */}
         <Grid.Column width={16}>
           <ControllerContainer
             intervalSpeed={intervalSpeed}
