@@ -16,11 +16,30 @@ const App = () => {
     const algo = {
       name: algoName,
       key: md5(Date.now()),
-      steps: generateSteps(algoName)
+      steps: generateSteps(algoName),
+      currentStep: 0
     };
 
     const updatedAlgos = [...algos, algo];
     setAlgos(updatedAlgos);
+  };
+
+  const incrementStep = () => {
+    let updateAlgos = [...algos];
+    updateAlgos.map(algo => {
+      // algo.currentStep <= algo.steps.length
+      //   ? (algo.currentStep += 1)
+      //   : (algo.currentStep = algo.steps.length - 1);
+      algo.currentStep += 1;
+      if (algo.currentStep >= algo.steps.length)
+        algo.currentStep = algo.steps.length - 1;
+      // if (algo.currentStep < algo.steps.length) {
+      //   algo.currentStep += 1;
+      // } else {
+      //   algo.currentStep = algo.steps.length - 1;
+      // }
+    });
+    setAlgos(updateAlgos);
   };
 
   const removeAlgo = algoKey => {
@@ -39,7 +58,11 @@ const App = () => {
             <MenuContainer menuSelect={menuSelect} />
           </Grid.Column>
           <Grid.Column width={12}>
-            <AlgorithmsContainer algos={algos} removeAlgo={removeAlgo} />
+            <AlgorithmsContainer
+              algos={algos}
+              removeAlgo={removeAlgo}
+              incrementStep={incrementStep}
+            />
           </Grid.Column>
         </Grid>
       </Container>
