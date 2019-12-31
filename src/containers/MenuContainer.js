@@ -29,6 +29,11 @@ const MenuContainer = ({ menuSelect }) => {
         key={"Tree Sort"}
         onClick={() => menuSelect("Tree Sort")}
       ></Menu.Item>
+      <Menu.Item
+        name="Selection Sort"
+        key={"Selection Sort"}
+        onClick={() => menuSelect("Selection Sort")}
+      ></Menu.Item>
     </Menu>
   );
 };

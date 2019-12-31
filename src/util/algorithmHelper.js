@@ -1,5 +1,6 @@
 import bubbleSort from "../algos/bubbleSort";
 import mergeSort from "../algos/mergeSort";
+import selectionSort from "../algos/selectionSort";
 
 //mapping between algorithm name derived from Menu Container and the associated sorting script.
 // TODO replace placeholder bubbleSort with real sorts when ready
@@ -8,7 +9,8 @@ const algoMap = {
   "Quick Sort": bubbleSort,
   "Merge Sort": mergeSort,
   "Radix Sort": bubbleSort,
-  "Tree Sort": bubbleSort
+  "Tree Sort": bubbleSort,
+  "Selection Sort": selectionSort
 };
 
 // Build an array of a given size; this array will mutate
@@ -20,7 +22,7 @@ const createUniqueArray = size => {
   return arr;
 };
 
-// Shuffle the built array using Dursetenfeld method
+// Shuffle the built array using Durstenfeld method
 // Alternatively, could use _.js library's .shuffle() method
 const shuffleArray = arr => {
   for (let i = arr.length - 1; i > 0; i--) {

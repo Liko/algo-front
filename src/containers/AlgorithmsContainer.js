@@ -34,12 +34,18 @@ const AlgorithmsContainer = ({ algos, removeAlgo, incrementStep }) => {
   //   setStep(0);
   // };
 
+  const reset = algo => {
+    // set the algo step to 0
+    algo.currentStep = 0;
+  };
+
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
 
     return algos.map(algo => {
       return (
         <Grid.Column key={algo.key} width={8}>
+          <button onClick={() => reset(algo)}>Reset</button>
           <AlgorithmCard
             algo={algo}
             removeAlgo={removeAlgo}
