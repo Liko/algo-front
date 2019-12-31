@@ -3,12 +3,12 @@ import { generateRandomArray } from "../util/algorithmHelper";
 import cloneDeep from "lodash/cloneDeep";
 
 // make deep copy of array, and copy step along with status to steps. afterwards, this deeply cloned step is not needed.
-// currently used in bubble sort
-const addStep = (index, array, steps, status) => {
+// currently used in selection sort
+const addStep = (i, jOrMin, array, steps, status) => {
   let step = cloneDeep(array);
   // add status for each step[index] is incorrect. must refactor lines 10-11.
-  step[index].status = status;
-  step[index + 1].status = status;
+  step[i].status = status;
+  step[jOrMin].status = status;
   steps.push(step);
 };
 
@@ -21,9 +21,10 @@ const selectionSort = (size = 10) => {
   // Finally, perform a selection sort on the shuffled array
   for (let i = 0; i < arr.length - 1; i++) {
     let min = i;
-    addStep(i, arr, steps, "checking");
+    // addStep(i, arr, steps, "checking");
 
     for (let j = i + 1; j < arr.length; j++) {
+      addStep(i, j, arr, steps, "checking");
       if (arr[min].value > arr[j].value) {
         min = j;
       }
@@ -32,7 +33,7 @@ const selectionSort = (size = 10) => {
       let tmp = arr[i];
       arr[i] = arr[min];
       arr[min] = tmp;
-      addStep(i, arr, steps, "moving");
+      addStep(i, min, arr, steps, "moving");
     }
   }
   // }
