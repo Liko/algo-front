@@ -6,7 +6,6 @@ import cloneDeep from "lodash/cloneDeep";
 // currently used in selection sort
 const addStep = (i, jOrMin, array, steps, status) => {
   let step = cloneDeep(array);
-  // add status for each step[index] is incorrect. must refactor lines 10-11.
   step[i].status = status;
   step[jOrMin].status = status;
   steps.push(step);
@@ -21,10 +20,9 @@ const selectionSort = (size = 10) => {
   // Finally, perform a selection sort on the shuffled array
   for (let i = 0; i < arr.length - 1; i++) {
     let min = i;
-    // addStep(i, arr, steps, "checking");
 
     for (let j = i + 1; j < arr.length; j++) {
-      addStep(i, j, arr, steps, "checking");
+      addStep(min, j, arr, steps, "checking");
       if (arr[min].value > arr[j].value) {
         min = j;
       }
@@ -36,7 +34,7 @@ const selectionSort = (size = 10) => {
       addStep(i, min, arr, steps, "moving");
     }
   }
-  // }
+
   steps.push(arr);
   return steps;
 };
