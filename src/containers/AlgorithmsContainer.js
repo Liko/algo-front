@@ -1,51 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
-const AlgorithmsContainer = ({ algos, removeAlgo, incrementStep }) => {
-  const [intervalSpeed, setIntervalSpeed] = useState(500);
-
-  const useInterval = (callback, delay) => {
-    const savedCallback = useRef();
-
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-
-    useEffect(() => {
-      const stepTick = () => {
-        savedCallback.current();
-      };
-      if (delay !== null) {
-        let id = setInterval(stepTick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
-  };
-
-  useInterval(() => {
-    incrementStep();
-  }, intervalSpeed);
-
-  // const reset = () => {
-  //   // set all algos step to 0
-  //   setStep(0);
-  // };
-
-  const reset = algo => {
-    // set the algo step to 0
-    algo.currentStep = 0;
-  };
-
+const AlgorithmsContainer = ({
+  algos,
+  removeAlgo,
+  intervalSpeed,
+  setIntervalSpeed,
+  controls,
+  handleClick,
+  isRunning
+}) => {
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
 
     return algos.map(algo => {
       return (
         <Grid.Column key={algo.key} width={8}>
-          <button onClick={() => reset(algo)}>Reset</button>
           <AlgorithmCard
             algo={algo}
             removeAlgo={removeAlgo}
@@ -64,6 +37,9 @@ const AlgorithmsContainer = ({ algos, removeAlgo, incrementStep }) => {
           <ControllerContainer
             intervalSpeed={intervalSpeed}
             setIntervalSpeed={setIntervalSpeed}
+            controls={controls}
+            handleClick={handleClick}
+            isRunning={isRunning}
             key={"ControllerContainer"}
           />
         </Grid.Column>

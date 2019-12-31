@@ -1,9 +1,12 @@
 import React from "react";
+import capitalize from "lodash/capitalize";
 
-const ControllerButton = () => {
+const ControllerButton = ({ label, handleClick, disabled }) => {
   return (
     <div>
-      <p>ControllerButton</p>
+      <button disabled={disabled} onClick={() => handleClick(label)}>
+        {capitalize(label)}
+      </button>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
 import MenuContainer from "../containers/MenuContainer";
 import AlgorithmsContainer from "../containers/AlgorithmsContainer";
@@ -8,6 +8,10 @@ import { generateSteps } from "../util/algorithmHelper";
 
 const App = () => {
   const [algos, setAlgos] = useState([]);
+
+  const [intervalSpeed, setIntervalSpeed] = useState(500);
+
+  const [isRunning, setIsRunning] = useState(false);
 
   const menuSelect = algoName => {
     if (algos.length >= 8)
@@ -24,13 +28,41 @@ const App = () => {
     setAlgos(updatedAlgos);
   };
 
-  const incrementStep = () => {
-    // currentStep for each algo should either increment or remain at final step
+  const stepForward = algo => {
+    algo.currentStep += 1;
+    if (algo.currentStep >= algo.steps.length)
+      algo.currentStep = algo.steps.length - 1;
+  };
+
+  const stepBack = algo => {
+    algo.currentStep -= 1;
+    if (algo.currentStep <= 0) algo.currentStep = 0;
+  };
+
+  const stepReset = algo => {
+    algo.currentStep = 0;
+  };
+
+  const stepPlay = () => {
+    setIsRunning(true);
+  };
+
+  const stepPause = () => {
+    setIsRunning(false);
+  };
+
+  const controllerMap = {
+    forward: stepForward,
+    back: stepBack,
+    reset: stepReset,
+    play: stepPlay,
+    pause: stepPause
+  };
+
+  const changeStep = direction => {
     let updateAlgos = [...algos];
     updateAlgos.map(algo => {
-      algo.currentStep += 1;
-      if (algo.currentStep >= algo.steps.length)
-        algo.currentStep = algo.steps.length - 1;
+      controllerMap[direction](algo);
     });
     setAlgos(updateAlgos);
   };
@@ -38,6 +70,35 @@ const App = () => {
   const removeAlgo = algoKey => {
     const updatedAlgos = algos.filter(algo => algo.key !== algoKey);
     setAlgos(updatedAlgos);
+  };
+
+  const useInterval = (callback, delay) => {
+    const savedCallback = useRef();
+
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+      const stepTick = () => {
+        savedCallback.current();
+      };
+      if (delay !== null) {
+        let id = setInterval(stepTick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  };
+
+  useInterval(
+    () => {
+      changeStep("forward");
+    },
+    isRunning ? intervalSpeed : null
+  );
+
+  const handleControllerClick = direction => {
+    changeStep(direction);
   };
 
   return (
@@ -54,7 +115,11 @@ const App = () => {
             <AlgorithmsContainer
               algos={algos}
               removeAlgo={removeAlgo}
-              incrementStep={incrementStep}
+              intervalSpeed={intervalSpeed}
+              setIntervalSpeed={setIntervalSpeed}
+              controls={controllerMap}
+              handleClick={handleControllerClick}
+              isRunning={isRunning}
             />
           </Grid.Column>
         </Grid>
