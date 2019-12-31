@@ -1,15 +1,4 @@
-import { generateRandomArray } from "../util/algorithmHelper";
-
-import cloneDeep from "lodash/cloneDeep";
-
-// make deep copy of array, and copy step along with status to steps. afterwards, this deeply cloned step is not needed.
-// currently used in selection sort
-const addStep = (i, jOrMin, array, steps, status) => {
-  let step = cloneDeep(array);
-  step[i].status = status;
-  step[jOrMin].status = status;
-  steps.push(step);
-};
+import { generateRandomArray, addStep } from "../util/algorithmHelper";
 
 const selectionSort = (size = 10) => {
   const arr = generateRandomArray(size);
