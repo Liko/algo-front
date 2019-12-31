@@ -1,34 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 
 import ControllerContainer from "./ControllerContainer";
 import AlgorithmCard from "../components/AlgorithmCard";
 
-const AlgorithmsContainer = ({ algos, removeAlgo, incrementStep }) => {
-  const [intervalSpeed, setIntervalSpeed] = useState(500);
-
-  const useInterval = (callback, delay) => {
-    const savedCallback = useRef();
-
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-
-    useEffect(() => {
-      const stepTick = () => {
-        savedCallback.current();
-      };
-      if (delay !== null) {
-        let id = setInterval(stepTick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
-  };
-
-  useInterval(() => {
-    incrementStep();
-  }, intervalSpeed);
-
+const AlgorithmsContainer = ({
+  algos,
+  removeAlgo,
+  intervalSpeed,
+  setIntervalSpeed
+}) => {
   // const reset = () => {
   //   // set all algos step to 0
   //   setStep(0);

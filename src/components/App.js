@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
 import MenuContainer from "../containers/MenuContainer";
 import AlgorithmsContainer from "../containers/AlgorithmsContainer";
@@ -8,6 +8,8 @@ import { generateSteps } from "../util/algorithmHelper";
 
 const App = () => {
   const [algos, setAlgos] = useState([]);
+
+  const [intervalSpeed, setIntervalSpeed] = useState(500);
 
   const menuSelect = algoName => {
     if (algos.length >= 8)
@@ -40,6 +42,28 @@ const App = () => {
     setAlgos(updatedAlgos);
   };
 
+  const useInterval = (callback, delay) => {
+    const savedCallback = useRef();
+
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+      const stepTick = () => {
+        savedCallback.current();
+      };
+      if (delay !== null) {
+        let id = setInterval(stepTick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  };
+
+  useInterval(() => {
+    incrementStep();
+  }, intervalSpeed);
+
   return (
     <div className="App">
       <Container text textAlign="center">
@@ -54,7 +78,8 @@ const App = () => {
             <AlgorithmsContainer
               algos={algos}
               removeAlgo={removeAlgo}
-              incrementStep={incrementStep}
+              intervalSpeed={intervalSpeed}
+              setIntervalSpeed={setIntervalSpeed}
             />
           </Grid.Column>
         </Grid>
