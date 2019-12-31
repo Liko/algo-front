@@ -8,13 +8,10 @@ const AlgorithmsContainer = ({
   algos,
   removeAlgo,
   intervalSpeed,
-  setIntervalSpeed
+  setIntervalSpeed,
+  changeMap,
+  handleClick
 }) => {
-  // const reset = () => {
-  //   // set all algos step to 0
-  //   setStep(0);
-  // };
-
   const reset = algo => {
     // set the algo step to 0
     algo.currentStep = 0;
@@ -45,6 +42,8 @@ const AlgorithmsContainer = ({
           <ControllerContainer
             intervalSpeed={intervalSpeed}
             setIntervalSpeed={setIntervalSpeed}
+            changeMap={changeMap}
+            handleClick={handleClick}
             key={"ControllerContainer"}
           />
         </Grid.Column>

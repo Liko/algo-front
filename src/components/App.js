@@ -82,6 +82,10 @@ const App = () => {
     changeStep("forward");
   }, intervalSpeed);
 
+  const handleControllerClick = direction => {
+    changeStep(direction);
+  };
+
   return (
     <div className="App">
       <Container text textAlign="center">
@@ -98,6 +102,8 @@ const App = () => {
               removeAlgo={removeAlgo}
               intervalSpeed={intervalSpeed}
               setIntervalSpeed={setIntervalSpeed}
+              changeMap={changeMap}
+              handleClick={handleControllerClick}
             />
           </Grid.Column>
         </Grid>
