@@ -1,6 +1,7 @@
 import bubbleSort from "../algos/bubbleSort";
 import mergeSort from "../algos/mergeSort";
 import selectionSort from "../algos/selectionSort";
+import insertionSort from "../algos/insertionSort";
 
 //mapping between algorithm name derived from Menu Container and the associated sorting script.
 // TODO replace placeholder bubbleSort with real sorts when ready
@@ -10,7 +11,8 @@ export const algoMap = {
   "Merge Sort": mergeSort,
   "Radix Sort": bubbleSort,
   "Tree Sort": bubbleSort,
-  "Selection Sort": selectionSort
+  "Selection Sort": selectionSort,
+  "Insertion Sort": insertionSort
 };
 
 // Build an array of a given size; this array will mutate
