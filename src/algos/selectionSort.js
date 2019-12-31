@@ -24,7 +24,7 @@ const selectionSort = (size = 10) => {
     // addStep(i, arr, steps, "checking");
 
     for (let j = i + 1; j < arr.length; j++) {
-      addStep(i, j, arr, steps, "checking");
+      addStep(min, j, arr, steps, "checking");
       if (arr[min].value > arr[j].value) {
         min = j;
       }
