@@ -5,7 +5,7 @@ import insertionSort from "../algos/insertionSort";
 
 //mapping between algorithm name derived from Menu Container and the associated sorting script.
 // TODO replace placeholder bubbleSort with real sorts when ready
-const algoMap = {
+export const algoMap = {
   "Bubble Sort": bubbleSort,
   "Quick Sort": bubbleSort,
   "Merge Sort": mergeSort,
