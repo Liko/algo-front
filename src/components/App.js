@@ -11,6 +11,8 @@ const App = () => {
 
   const [intervalSpeed, setIntervalSpeed] = useState(500);
 
+  const [isRunning, setIsRunning] = useState(true);
+
   const menuSelect = algoName => {
     if (algos.length >= 8)
       return alert("You can only selected 8 algorithms at a time.");
@@ -41,16 +43,26 @@ const App = () => {
     algo.currentStep = 0;
   };
 
-  const changeMap = {
+  const stepPlay = () => {
+    setIsRunning(true);
+  };
+
+  const stepPause = () => {
+    setIsRunning(false);
+  };
+
+  const controllerMap = {
     forward: stepForward,
     back: stepBack,
-    reset: stepReset
+    reset: stepReset,
+    play: stepPlay,
+    pause: stepPause
   };
 
   const changeStep = direction => {
     let updateAlgos = [...algos];
     updateAlgos.map(algo => {
-      changeMap[direction](algo);
+      controllerMap[direction](algo);
     });
     setAlgos(updateAlgos);
   };
@@ -78,9 +90,12 @@ const App = () => {
     }, [delay]);
   };
 
-  useInterval(() => {
-    changeStep("forward");
-  }, intervalSpeed);
+  useInterval(
+    () => {
+      changeStep("forward");
+    },
+    isRunning ? intervalSpeed : null
+  );
 
   const handleControllerClick = direction => {
     changeStep(direction);
@@ -102,7 +117,7 @@ const App = () => {
               removeAlgo={removeAlgo}
               intervalSpeed={intervalSpeed}
               setIntervalSpeed={setIntervalSpeed}
-              changeMap={changeMap}
+              controls={controllerMap}
               handleClick={handleControllerClick}
             />
           </Grid.Column>

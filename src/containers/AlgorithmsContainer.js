@@ -9,7 +9,7 @@ const AlgorithmsContainer = ({
   removeAlgo,
   intervalSpeed,
   setIntervalSpeed,
-  changeMap,
+  controls,
   handleClick
 }) => {
   const reset = algo => {
@@ -42,7 +42,7 @@ const AlgorithmsContainer = ({
           <ControllerContainer
             intervalSpeed={intervalSpeed}
             setIntervalSpeed={setIntervalSpeed}
-            changeMap={changeMap}
+            controls={controls}
             handleClick={handleClick}
             key={"ControllerContainer"}
           />

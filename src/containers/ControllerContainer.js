@@ -6,11 +6,11 @@ import ControllerButton from "../components/ControllerButton";
 const ControllerContainer = ({
   intervalSpeed,
   setIntervalSpeed,
-  changeMap,
+  controls,
   handleClick
 }) => {
   const mapButtons = () => {
-    return Object.keys(changeMap).map(label => (
+    return Object.keys(controls).map(label => (
       <ControllerButton label={label} handleClick={handleClick} />
     ));
   };
