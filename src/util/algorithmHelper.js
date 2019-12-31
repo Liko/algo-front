@@ -3,6 +3,8 @@ import mergeSort from "../algos/mergeSort";
 import selectionSort from "../algos/selectionSort";
 import insertionSort from "../algos/insertionSort";
 
+import cloneDeep from "lodash/cloneDeep";
+
 //mapping between algorithm name derived from Menu Container and the associated sorting script.
 // TODO replace placeholder bubbleSort with real sorts when ready
 export const algoMap = {
@@ -40,4 +42,13 @@ export const generateRandomArray = size => {
 
 export const generateSteps = name => {
   return algoMap[name]();
+};
+
+// make deep copy of array, and copy step along with status to steps. afterwards, this deeply cloned step is not needed.
+//currently used in bubble sort and selection sort
+export const addStep = (i, j, array, steps, status) => {
+  let step = cloneDeep(array);
+  step[i].status = status;
+  step[j].status = status;
+  steps.push(step);
 };
