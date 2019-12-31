@@ -26,13 +26,31 @@ const App = () => {
     setAlgos(updatedAlgos);
   };
 
-  const incrementStep = () => {
-    // currentStep for each algo should either increment or remain at final step
+  const stepForward = algo => {
+    algo.currentStep += 1;
+    if (algo.currentStep >= algo.steps.length)
+      algo.currentStep = algo.steps.length - 1;
+  };
+
+  const stepBack = algo => {
+    algo.currentStep -= 1;
+    if (algo.currentStep <= 0) algo.currentStep = 0;
+  };
+
+  const stepReset = algo => {
+    algo.currentStep = 0;
+  };
+
+  const changeMap = {
+    forward: stepForward,
+    back: stepBack,
+    reset: stepReset
+  };
+
+  const changeStep = direction => {
     let updateAlgos = [...algos];
     updateAlgos.map(algo => {
-      algo.currentStep += 1;
-      if (algo.currentStep >= algo.steps.length)
-        algo.currentStep = algo.steps.length - 1;
+      changeMap[direction](algo);
     });
     setAlgos(updateAlgos);
   };
@@ -61,7 +79,7 @@ const App = () => {
   };
 
   useInterval(() => {
-    incrementStep();
+    changeStep("forward");
   }, intervalSpeed);
 
   return (
