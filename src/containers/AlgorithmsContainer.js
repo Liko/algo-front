@@ -10,20 +10,15 @@ const AlgorithmsContainer = ({
   intervalSpeed,
   setIntervalSpeed,
   controls,
-  handleClick
+  handleClick,
+  isRunning
 }) => {
-  const reset = algo => {
-    // set the algo step to 0
-    algo.currentStep = 0;
-  };
-
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
 
     return algos.map(algo => {
       return (
         <Grid.Column key={algo.key} width={8}>
-          <button onClick={() => reset(algo)}>Reset</button>
           <AlgorithmCard
             algo={algo}
             removeAlgo={removeAlgo}
@@ -44,6 +39,7 @@ const AlgorithmsContainer = ({
             setIntervalSpeed={setIntervalSpeed}
             controls={controls}
             handleClick={handleClick}
+            isRunning={isRunning}
             key={"ControllerContainer"}
           />
         </Grid.Column>

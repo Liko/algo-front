@@ -11,7 +11,7 @@ const App = () => {
 
   const [intervalSpeed, setIntervalSpeed] = useState(500);
 
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
 
   const menuSelect = algoName => {
     if (algos.length >= 8)
@@ -119,6 +119,7 @@ const App = () => {
               setIntervalSpeed={setIntervalSpeed}
               controls={controllerMap}
               handleClick={handleControllerClick}
+              isRunning={isRunning}
             />
           </Grid.Column>
         </Grid>

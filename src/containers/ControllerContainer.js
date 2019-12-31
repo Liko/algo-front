@@ -7,12 +7,32 @@ const ControllerContainer = ({
   intervalSpeed,
   setIntervalSpeed,
   controls,
-  handleClick
+  handleClick,
+  isRunning
 }) => {
+  const currentlyRunning = label => {
+    return (label !== "play" && isRunning) || (label !== "pause" && !isRunning);
+  };
+
+  const currentlyDisabled = label => {
+    return (
+      (label === "forward" || label === "back" || label === "reset") &&
+      isRunning
+    );
+  };
+
   const mapButtons = () => {
-    return Object.keys(controls).map(label => (
-      <ControllerButton label={label} handleClick={handleClick} />
-    ));
+    return Object.keys(controls).map(label => {
+      if (currentlyRunning(label)) {
+        return (
+          <ControllerButton
+            label={label}
+            disabled={currentlyDisabled(label)}
+            handleClick={handleClick}
+          />
+        );
+      }
+    });
   };
   return (
     <div>
