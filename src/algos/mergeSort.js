@@ -1,6 +1,6 @@
 import {
   generateRandomArray,
-  addStep,
+  addCheckOrSwapStep,
   addInsertStep,
   clearStatus
 } from "../util/algorithmHelper";
@@ -37,7 +37,13 @@ const mergeSort = (size = 10) => {
         step => step.value === right[0].value
       );
 
-      addStep(leftIndex, rightIndex, clearStatus(prevStep), steps, "checking");
+      addCheckOrSwapStep(
+        leftIndex,
+        rightIndex,
+        clearStatus(prevStep),
+        steps,
+        "checking"
+      );
 
       if (left[0].value < right[0].value) {
         array.push(left.shift());
