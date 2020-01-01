@@ -1,4 +1,7 @@
-import { generateRandomArray, addStep } from "../util/algorithmHelper";
+import {
+  generateRandomArray,
+  addCheckOrSwapStep
+} from "../util/algorithmHelper";
 
 const selectionSort = (size = 10) => {
   const arr = generateRandomArray(size);
@@ -11,7 +14,7 @@ const selectionSort = (size = 10) => {
     let min = i;
 
     for (let j = i + 1; j < arr.length; j++) {
-      addStep(min, j, arr, steps, "checking");
+      addCheckOrSwapStep(min, j, arr, steps, "checking");
       if (arr[min].value > arr[j].value) {
         min = j;
       }
@@ -20,7 +23,7 @@ const selectionSort = (size = 10) => {
       let tmp = arr[i];
       arr[i] = arr[min];
       arr[min] = tmp;
-      addStep(i, min, arr, steps, "moving");
+      addCheckOrSwapStep(i, min, arr, steps, "moving");
     }
   }
 

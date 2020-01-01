@@ -1,4 +1,7 @@
-import { generateRandomArray, addStep } from "../util/algorithmHelper";
+import {
+  generateRandomArray,
+  addCheckOrSwapStep
+} from "../util/algorithmHelper";
 
 const bubbleSort = (size = 10) => {
   const arr = generateRandomArray(size);
@@ -12,10 +15,10 @@ const bubbleSort = (size = 10) => {
     swap = false;
     for (let i = 0; i < arr.length; i++) {
       if (arr[i + 1]) {
-        addStep(i, i + 1, arr, steps, "checking");
+        addCheckOrSwapStep(i, i + 1, arr, steps, "checking");
         if (arr[i].value > arr[i + 1].value) {
           [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; // swap elements so that the greater of the two 'moves' towards the end of the array
-          addStep(i, i + 1, arr, steps, "moving");
+          addCheckOrSwapStep(i, i + 1, arr, steps, "moving");
           swap = true;
         }
       }

@@ -1,4 +1,7 @@
-import { generateRandomArray, addStep } from "../util/algorithmHelper";
+import {
+  generateRandomArray,
+  addCheckOrSwapStep
+} from "../util/algorithmHelper";
 
 const insertionSort = (size = 10) => {
   const arr = generateRandomArray(size);
@@ -14,11 +17,11 @@ const insertionSort = (size = 10) => {
     let x = arr[i];
     // Compare key value against element value at the previous position
     let j = i - 1; // begins at 0
-    addStep(i, j, arr, steps, "checking");
+    addCheckOrSwapStep(i, j, arr, steps, "checking");
     while (j >= 0 && arr[j].value > x.value) {
       // Swap occurs here
       [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-      addStep(j, j + 1, arr, steps, "moving");
+      addCheckOrSwapStep(j, j + 1, arr, steps, "moving");
       j = j - 1;
     }
     // Key element is inserted here
