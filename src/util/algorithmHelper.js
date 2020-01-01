@@ -58,3 +58,9 @@ export const addInsertStep = (i, array, steps, status) => {
   step[i].status = status;
   steps.push(step);
 };
+
+export const clearStatus = array => {
+  return array.map(el => {
+    return { ...el, status: "idle" };
+  });
+};
