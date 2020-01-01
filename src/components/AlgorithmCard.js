@@ -42,7 +42,8 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
   const calculateBarColor = (item, index) => {
     if (item.status === "checking") return "yellow";
     else if (item.status === "moving") return "salmon";
-    else if (item.value === lastStep[index].value) return "lightgreen";
+    // else if (item.value === lastStep[index].value) return "lightgreen";
+    else if (algo.steps[step] === lastStep) return "lightgreen";
     else return "orange";
   };
 
