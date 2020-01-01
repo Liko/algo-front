@@ -21,7 +21,7 @@ export const algoMap = {
 const createUniqueArray = size => {
   const arr = [];
   for (let i = 1; i < size + 1; i++) {
-    arr.push({ value: i, status: "idle" });
+    arr.push({ value: i, status: "idle", isSorted: false });
   }
   return arr;
 };
