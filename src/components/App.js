@@ -31,10 +31,9 @@ const App = () => {
   };
 
   const pauseIfAllFinished = () => {
-    if (algos.find(algo => algo.currentStep !== algo.steps.length - 1)) {
-      return null;
-    }
-    stepPause();
+    return algos.find(algo => algo.currentStep !== algo.steps.length - 1)
+      ? null
+      : stepPause();
   };
 
   const stepForward = algo => {
