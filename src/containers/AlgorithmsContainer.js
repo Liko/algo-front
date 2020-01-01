@@ -32,7 +32,6 @@ const AlgorithmsContainer = ({
   return (
     <Container>
       <Grid stackable stretched={true}>
-        {/* <button onClick={reset}>Reset</button> */}
         <Grid.Column width={16}>
           <ControllerContainer
             intervalSpeed={intervalSpeed}
