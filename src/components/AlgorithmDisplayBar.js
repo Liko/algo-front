@@ -12,7 +12,7 @@ const AlgorithmDisplayBar = ({ item, color, style }) => {
           }}
         >
           <h5 className="label">
-            {item.value} {item.status} / ✓: {String(item.isChecked)}
+            {item.value} {item.status} / ✓: {String(item.isSorted)}
           </h5>
         </div>
       </div>
