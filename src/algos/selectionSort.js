@@ -3,11 +3,13 @@ import {
   addCheckOrSwapStep
 } from "../util/algorithmHelper";
 
+import cloneDeep from "lodash/cloneDeep";
+
 const selectionSort = (size = 10) => {
   const arr = generateRandomArray(size);
 
   // Initialize steps, which will keep track of array element positions at each cycle
-  const steps = [[...arr]];
+  const steps = [cloneDeep(arr)];
 
   // Finally, perform a selection sort on the shuffled array
   for (let i = 0; i < arr.length - 1; i++) {
@@ -25,6 +27,7 @@ const selectionSort = (size = 10) => {
       arr[min] = tmp;
       addCheckOrSwapStep(i, min, arr, steps, "moving");
     }
+    arr[i].isSorted = true;
   }
 
   steps.push(arr);
