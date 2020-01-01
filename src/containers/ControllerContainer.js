@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
-import IntervalSlider from "../components/IntervalSlider";
+import OptionSlider from "../components/OptionSlider";
 import ControllerButton from "../components/ControllerButton";
 
 const ControllerContainer = ({
@@ -8,6 +8,8 @@ const ControllerContainer = ({
   setIntervalSpeed,
   controls,
   handleClick,
+  arraySize,
+  setArraySize,
   isRunning
 }) => {
   const currentlyRunning = label => {
@@ -34,14 +36,33 @@ const ControllerContainer = ({
       }
     });
   };
+
+  const intervalOptions = {
+    value: intervalSpeed,
+    setValue: setIntervalSpeed,
+    min: 100,
+    max: 2000,
+    step: 100,
+    label: "Interval: ",
+    labelInfo: `${intervalSpeed / 1000}s`
+  };
+
+  const arraySizeOptions = {
+    value: arraySize,
+    setValue: setArraySize,
+    min: 5,
+    max: 25,
+    step: 1,
+    label: "Array Size: ",
+    labelInfo: arraySize
+  };
+
   return (
     <div>
       <Button fluid>ControllerContainer</Button>
       {mapButtons()}
-      <IntervalSlider
-        intervalSpeed={intervalSpeed}
-        setIntervalSpeed={setIntervalSpeed}
-      />
+      <OptionSlider {...intervalOptions} />
+      <OptionSlider {...arraySizeOptions} />
     </div>
   );
 };

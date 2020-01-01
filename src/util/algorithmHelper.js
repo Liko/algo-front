@@ -40,8 +40,8 @@ export const generateRandomArray = size => {
   return shuffleArray(createUniqueArray(size));
 };
 
-export const generateSteps = name => {
-  return algoMap[name]();
+export const generateSteps = (name, size) => {
+  return algoMap[name](size);
 };
 
 // make deep copy of array, and copy step along with status to steps. afterwards, this deeply cloned step is not needed.

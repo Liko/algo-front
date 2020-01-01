@@ -11,6 +11,8 @@ const App = () => {
 
   const [intervalSpeed, setIntervalSpeed] = useState(500);
 
+  const [arraySize, setArraySize] = useState(10);
+
   const [isRunning, setIsRunning] = useState(false);
 
   const menuSelect = algoName => {
@@ -20,7 +22,7 @@ const App = () => {
     const algo = {
       name: algoName,
       key: md5(Date.now()),
-      steps: generateSteps(algoName),
+      steps: generateSteps(algoName, arraySize),
       currentStep: 0
     };
 
@@ -28,10 +30,17 @@ const App = () => {
     setAlgos(updatedAlgos);
   };
 
+  const pauseIfAllFinished = () => {
+    return algos.find(algo => algo.currentStep !== algo.steps.length - 1)
+      ? null
+      : stepPause();
+  };
+
   const stepForward = algo => {
     algo.currentStep += 1;
     if (algo.currentStep >= algo.steps.length)
       algo.currentStep = algo.steps.length - 1;
+    pauseIfAllFinished();
   };
 
   const stepBack = algo => {
@@ -120,6 +129,8 @@ const App = () => {
               controls={controllerMap}
               handleClick={handleControllerClick}
               isRunning={isRunning}
+              arraySize={arraySize}
+              setArraySize={setArraySize}
             />
           </Grid.Column>
         </Grid>
