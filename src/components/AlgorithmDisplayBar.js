@@ -11,7 +11,9 @@ const AlgorithmDisplayBar = ({ item, color, style }) => {
             backgroundColor: color
           }}
         >
-          <h5 className="label">{item.value}</h5>
+          <h5 className="label">
+            {item.value} {item.status}
+          </h5>
         </div>
       </div>
     </animated.div>

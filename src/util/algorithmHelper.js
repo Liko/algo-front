@@ -52,3 +52,15 @@ export const addStep = (i, j, array, steps, status) => {
   step[j].status = status;
   steps.push(step);
 };
+
+export const addInsertStep = (i, array, steps, status) => {
+  let step = cloneDeep(array);
+  step[i].status = status;
+  steps.push(step);
+};
+
+export const clearStatus = array => {
+  return array.map(el => {
+    return { ...el, status: "idle" };
+  });
+};
