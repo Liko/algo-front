@@ -30,10 +30,17 @@ const App = () => {
     setAlgos(updatedAlgos);
   };
 
+  const pauseIfAllFinished = () => {
+    return algos.find(algo => algo.currentStep !== algo.steps.length - 1)
+      ? null
+      : stepPause();
+  };
+
   const stepForward = algo => {
     algo.currentStep += 1;
     if (algo.currentStep >= algo.steps.length)
       algo.currentStep = algo.steps.length - 1;
+    pauseIfAllFinished();
   };
 
   const stepBack = algo => {
