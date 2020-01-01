@@ -21,7 +21,7 @@ export const algoMap = {
 const createUniqueArray = size => {
   const arr = [];
   for (let i = 1; i < size + 1; i++) {
-    arr.push({ value: i, status: "idle", isChecked: false });
+    arr.push({ value: i, status: "idle", isSorted: false });
   }
   return arr;
 };
@@ -50,8 +50,6 @@ export const addCheckOrSwapStep = (i, j, array, steps, status) => {
   let step = cloneDeep(array);
   step[i].status = status;
   step[j].status = status;
-  // console.log("Array: ", step);
-  console.log("Array Step", steps.length);
   steps.push(step);
 };
 

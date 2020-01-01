@@ -43,7 +43,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
     if (item.status === "checking") return "yellow";
     else if (item.status === "moving") return "salmon";
     else if (algo.steps[step] === lastStep) return "lightgreen";
-    else if (item.isChecked) return "lightblue";
+    else if (item.isSorted) return "lightblue";
     else return "orange";
   };
 
