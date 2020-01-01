@@ -2,7 +2,15 @@ import React from "react";
 import { Grid, Segment, Label, GridColumn } from "semantic-ui-react";
 import { Slider } from "react-semantic-ui-range";
 
-const IntervalSlider = ({ intervalSpeed, setIntervalSpeed }) => {
+const OptionSlider = ({
+  value,
+  setValue,
+  label,
+  labelInfo,
+  min,
+  max,
+  step
+}) => {
   return (
     <Grid stackable stretched={true}>
       <Grid.Column width={12}>
@@ -11,23 +19,23 @@ const IntervalSlider = ({ intervalSpeed, setIntervalSpeed }) => {
             color="orange"
             inverted={false}
             settings={{
-              start: intervalSpeed,
-              min: 100,
-              max: 2000,
-              step: 100,
-              onChange: value => setIntervalSpeed(value)
+              start: value,
+              min: min,
+              max: max,
+              step: step,
+              onChange: value => setValue(value)
             }}
           />
         </Segment>
       </Grid.Column>
       <GridColumn width={4}>
         <Label color="orange">
-          <p>Interval:</p>
-          <p>{intervalSpeed / 1000}s </p>
+          <p>{label}</p>
+          <p>{labelInfo} </p>
         </Label>
       </GridColumn>
     </Grid>
   );
 };
 
-export default IntervalSlider;
+export default OptionSlider;
