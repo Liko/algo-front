@@ -11,7 +11,9 @@ const AlgorithmsContainer = ({
   setIntervalSpeed,
   controls,
   handleClick,
-  isRunning
+  isRunning,
+  arraySize,
+  setArraySize
 }) => {
   const buildAlgorithmCards = () => {
     // Make a card for each algorithm a user has selected
@@ -39,6 +41,8 @@ const AlgorithmsContainer = ({
             controls={controls}
             handleClick={handleClick}
             isRunning={isRunning}
+            arraySize={arraySize}
+            setArraySize={setArraySize}
             key={"ControllerContainer"}
           />
         </Grid.Column>
