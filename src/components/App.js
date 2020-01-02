@@ -70,9 +70,7 @@ const App = () => {
 
   const changeStep = direction => {
     let updateAlgos = [...algos];
-    updateAlgos.map(algo => {
-      controllerMap[direction](algo);
-    });
+    updateAlgos.map(algo => controllerMap[direction](algo));
     setAlgos(updateAlgos);
   };
 

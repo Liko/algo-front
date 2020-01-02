@@ -12,8 +12,6 @@ export const algoMap = {
   "Bubble Sort": bubbleSort,
   "Quick Sort": quickSort,
   "Merge Sort": mergeSort,
-  "Radix Sort": bubbleSort,
-  "Tree Sort": bubbleSort,
   "Selection Sort": selectionSort,
   "Insertion Sort": insertionSort
 };
