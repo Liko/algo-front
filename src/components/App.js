@@ -17,7 +17,7 @@ const App = () => {
 
   const menuSelect = algoName => {
     if (algos.length >= 8)
-      return alert("You can only selected 8 algorithms at a time.");
+      return alert("You can only select up to 8 algorithms at a time.");
 
     const algo = {
       name: algoName,
