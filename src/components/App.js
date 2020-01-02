@@ -129,14 +129,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Segment
-        fluid
-        vertical
-        inverted
-        textAlign="center"
-        verticalAlign="middle"
-        style={{ height: "5vh" }}
-      >
+      <Segment vertical inverted textAlign="center" style={{ height: "5vh" }}>
         <Header as="h1">Algos 📊</Header>
       </Segment>
       <Container fluid>
@@ -162,18 +155,17 @@ const App = () => {
 
       <Container
         fluid
-        vertical
+        textAlign="center"
         style={{
           background: "#1A1C1D",
           height: "5vh",
           bottom: "0",
           padding: "1em 0em",
           marginTop: "2em",
-          "z-index": "1000",
           position: algos.length > 2 ? "relative" : "absolute"
         }}
       >
-        <Header as="h5" textAlign="middle center" style={{ color: "#D1D2D3" }}>
+        <Header as="h5" style={{ color: "#D1D2D3" }}>
           Algos is an algorithm visualizer built by Gee-Wey Yue, Gordy Lanza,
           and Li Xie using React and Semantic-ui. Check out our repo on{" "}
           <a href="https://github.com/Liko/algo-front/">github</a>!
