@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Grid, GridColumn, Button } from "semantic-ui-react";
 import OptionSlider from "../components/OptionSlider";
 import ControllerButton from "../components/ControllerButton";
 
@@ -61,8 +61,14 @@ const ControllerContainer = ({
     <div>
       <Button fluid>ControllerContainer</Button>
       {mapButtons()}
-      <OptionSlider {...intervalOptions} />
-      <OptionSlider {...arraySizeOptions} />
+      <Grid stackable stretched={true}>
+        <Grid.Column width={8}>
+          <OptionSlider {...intervalOptions} />
+        </Grid.Column>
+        <Grid.Column width={8}>
+          <OptionSlider {...arraySizeOptions} />
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };
