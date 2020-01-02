@@ -67,7 +67,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
     <Card fluid onClick={() => removeAlgo(algo.key)}>
       <Card.Content>
         <p>
-          {algo.name} - step {step}
+          {algo.name} - step {step} of {algo.steps.length}
         </p>
         <div style={{ height }}>{mapBars()}</div>
       </Card.Content>
