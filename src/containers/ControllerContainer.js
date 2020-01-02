@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, GridColumn, Button } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import OptionSlider from "../components/OptionSlider";
 import ControllerButton from "../components/ControllerButton";
 
@@ -59,7 +59,6 @@ const ControllerContainer = ({
 
   return (
     <div>
-      <Button fluid>ControllerContainer</Button>
       {mapButtons()}
       <Grid stackable stretched={true}>
         <Grid.Column width={8}>
