@@ -52,15 +52,7 @@ const mergeSort = (size = 10) => {
       );
 
       if (left[0].value < right[0].value) {
-        const element = left.shift();
-        array.push(element);
-
-        //if we are on the final recursion, mark element as sorted
-        // if (finalMerger) {
-        //   let newStep = clearStatus(prevStep);
-        //   newStep.find(el => el.value === element.value).isSorted = true;
-        //   steps.push(newStep);
-        // }
+        array.push(left.shift());
       } else {
         //this condition means we need to visualize insertion
         array.push(right.shift());
@@ -68,7 +60,7 @@ const mergeSort = (size = 10) => {
         const insert = newStep.splice(rightIndex, 1)[0];
         newStep.splice(leftIndex, 0, insert);
 
-        //if we are on the final recursion, mark element as sorted
+        //if we are on the final recursion, mark all element up to current insert as sorted
         if (finalMerger) {
           newStep.forEach(
             el => el.value <= insert.value && (el.isSorted = true)
