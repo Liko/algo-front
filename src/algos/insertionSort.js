@@ -1,8 +1,4 @@
-import {
-  generateRandomArray,
-  addCheckOrSwapStep,
-  addInsertStep
-} from "../util/algorithmHelper";
+import { generateRandomArray, addStep } from "../util/algorithmHelper";
 
 import cloneDeep from "lodash/cloneDeep";
 
@@ -21,11 +17,11 @@ const insertionSort = (size = 10) => {
     let x = arr[i];
     // Compare key value against element value at the previous position
     let j = i - 1; // begins at 0
-    addCheckOrSwapStep(i, j, arr, steps, "checking");
+    addStep([i, j], arr, steps, "checking");
     while (j >= 0 && arr[j].value > x.value) {
       // Swap occurs here
       [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-      addInsertStep(j, arr, steps, "moving");
+      addStep([j], arr, steps, "moving");
       j = j - 1;
     }
     // Key element is inserted here

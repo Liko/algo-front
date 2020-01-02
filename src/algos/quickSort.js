@@ -1,6 +1,6 @@
 import {
   generateRandomArray,
-  addCheckOrSwapStep,
+  addStep,
   clearStatus
 } from "../util/algorithmHelper";
 
@@ -29,51 +29,27 @@ const quickSort = (size = 10) => {
       // Evaluate elements left of the pivot until one is found with a higher value than the pivot
       while (array[i].value < pivot.value) {
         // Set the status of the current left/right pointers to 'checking', all other elements to 'idle'
-        addCheckOrSwapStep(
-          i,
-          pivotPosition,
-          clearStatus(prevStep()),
-          steps,
-          "checking"
-        );
+        addStep([i, pivotPosition], clearStatus(prevStep()), steps, "checking");
         i++;
       }
 
-      addCheckOrSwapStep(
-        i,
-        pivotPosition,
-        clearStatus(prevStep()),
-        steps,
-        "checking"
-      );
+      addStep([i, pivotPosition], clearStatus(prevStep()), steps, "checking");
 
       // Check the same for elements right of the pivot
       while (array[j].value > pivot.value) {
         // Set the status of the current left/right pointers to 'checking', all other elements to 'idle'
-        addCheckOrSwapStep(
-          j,
-          pivotPosition,
-          clearStatus(prevStep()),
-          steps,
-          "checking"
-        );
+        addStep([j, pivotPosition], clearStatus(prevStep()), steps, "checking");
         j--;
       }
 
-      addCheckOrSwapStep(
-        j,
-        pivotPosition,
-        clearStatus(prevStep()),
-        steps,
-        "checking"
-      );
+      addStep([j, pivotPosition], clearStatus(prevStep()), steps, "checking");
 
       // If elements that need to be swapped were found, swap them
       if (i <= j) {
         // Swap elements, store the new positions to step, then move the i/j pointers
         if (i !== j) {
           [array[i], array[j]] = [array[j], array[i]];
-          addCheckOrSwapStep(i, j, array, steps, "moving");
+          addStep([i, j], array, steps, "moving");
         }
         i++;
         j--;

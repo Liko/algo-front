@@ -1,7 +1,4 @@
-import {
-  generateRandomArray,
-  addCheckOrSwapStep
-} from "../util/algorithmHelper";
+import { generateRandomArray, addStep } from "../util/algorithmHelper";
 
 import cloneDeep from "lodash/cloneDeep";
 
@@ -18,10 +15,10 @@ const bubbleSort = (size = 10) => {
     swap = false;
     for (let i = 0; i < lastUnsortedElement; i++) {
       if (arr[i + 1] && arr[i + 1].isSorted === false) {
-        addCheckOrSwapStep(i, i + 1, arr, steps, "checking");
+        addStep([i, i + 1], arr, steps, "checking");
         if (arr[i].value > arr[i + 1].value) {
           [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-          addCheckOrSwapStep(i, i + 1, arr, steps, "moving");
+          addStep([i, i + 1], arr, steps, "moving");
           swap = true;
         }
       } else {
