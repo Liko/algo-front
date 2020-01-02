@@ -59,7 +59,6 @@ const ControllerContainer = ({
 
   return (
     <div>
-      <Button fluid>ControllerContainer</Button>
       {mapButtons()}
       <Grid stackable stretched={true}>
         <Grid.Column width={8}>
