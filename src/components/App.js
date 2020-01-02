@@ -15,25 +15,6 @@ const App = () => {
 
   const [isRunning, setIsRunning] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  });
-
-  const handleKeyDown = event => {
-    if (event.key === " ") {
-      isRunning ? stepPause() : stepPlay();
-    } else if (event.key === "ArrowLeft") {
-      changeStep("back");
-    } else if (event.key === "ArrowRight") {
-      changeStep("forward");
-    } else if (event.key === "r") {
-      changeStep("reset");
-    }
-  };
-
   const menuSelect = algoName => {
     if (algos.length >= 8)
       return alert("You can only selected 8 algorithms at a time.");
@@ -128,6 +109,25 @@ const App = () => {
   const handleControllerClick = direction => {
     changeStep(direction);
   };
+
+  const useKeyDown = (targetKey, callback) => {
+    const handleKeyDown = ({ key }) => {
+      if (key === targetKey) {
+        callback();
+      }
+    };
+    useEffect(() => {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    });
+  };
+
+  useKeyDown(" ", isRunning ? stepPause : stepPlay);
+  useKeyDown("ArrowRight", () => changeStep("forward"));
+  useKeyDown("ArrowLeft", () => changeStep("back"));
+  useKeyDown("r", () => changeStep("reset"));
 
   return (
     <div className="App">
