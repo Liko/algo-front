@@ -45,16 +45,9 @@ export const generateSteps = (name, size) => {
 
 // make deep copy of array, and copy step along with status to steps. afterwards, this deeply cloned step is not needed.
 //currently used in bubble sort and selection sort
-export const addCheckOrSwapStep = (i, j, array, steps, status) => {
+export const addStep = (indices, array, steps, status) => {
   let step = cloneDeep(array);
-  step[i].status = status;
-  step[j].status = status;
-  steps.push(step);
-};
-
-export const addInsertStep = (i, array, steps, status) => {
-  let step = cloneDeep(array);
-  step[i].status = status;
+  indices.forEach(i => (step[i].status = status));
   steps.push(step);
 };
 

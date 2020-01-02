@@ -1,7 +1,4 @@
-import {
-  generateRandomArray,
-  addCheckOrSwapStep
-} from "../util/algorithmHelper";
+import { generateRandomArray, addStep } from "../util/algorithmHelper";
 
 import cloneDeep from "lodash/cloneDeep";
 
@@ -16,7 +13,7 @@ const selectionSort = (size = 10) => {
     let min = i;
 
     for (let j = i + 1; j < arr.length; j++) {
-      addCheckOrSwapStep(min, j, arr, steps, "checking");
+      addStep([min, j], arr, steps, "checking");
       if (arr[min].value > arr[j].value) {
         min = j;
       }
@@ -25,7 +22,7 @@ const selectionSort = (size = 10) => {
       let tmp = arr[i];
       arr[i] = arr[min];
       arr[min] = tmp;
-      addCheckOrSwapStep(i, min, arr, steps, "moving");
+      addStep([i, min], arr, steps, "moving");
     }
     arr[i].isSorted = true;
   }
