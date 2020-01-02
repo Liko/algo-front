@@ -131,8 +131,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <Container text textAlign="center">
-        <Header size="huge">Algo</Header>
+      <Container
+        fluid
+        textAlign="center"
+        style={{ background: "#343A40", height: "5vh" }}
+      >
+        <Header as="h2" style={{ color: "#FFF" }}>
+          Algos 📊
+        </Header>
       </Container>
       <Container fluid>
         <Grid columns={2} stackable>
@@ -153,6 +159,20 @@ const App = () => {
             />
           </Grid.Column>
         </Grid>
+      </Container>
+      <Container
+        fluid
+        textAlign="center"
+        style={{
+          background: "#343A40",
+          height: "5vh",
+          position: "fixed",
+          bottom: "0"
+        }}
+      >
+        <Header as="h3" style={{ color: "#FFF" }}>
+          Algos
+        </Header>
       </Container>
     </div>
   );
