@@ -135,9 +135,9 @@ const App = () => {
         fluid
         vertical
         textAlign="center"
-        style={{ background: "#343A40", height: "5vh" }}
+        style={{ background: "#1A1C1D", height: "5vh" }}
       >
-        <Header as="h2" verticalAlign="middle" style={{ color: "#FFF" }}>
+        <Header as="h1" verticalAlign="middle" style={{ color: "#FFF" }}>
           Algos 📊
         </Header>
       </Container>
@@ -166,11 +166,12 @@ const App = () => {
         fluid
         vertical
         style={{
-          background: "#343A40",
+          background: "#1A1C1D",
           height: "5vh",
-          position: "fixed",
           bottom: "0",
-          padding: "1em 0em"
+          padding: "1em 0em",
+          "z-index": "1000",
+          position: algos.length > 2 ? "relative" : "absolute"
         }}
       >
         <Header as="h5" textAlign="middle center" style={{ color: "#D1D2D3" }}>
@@ -184,20 +185,3 @@ const App = () => {
 };
 
 export default App;
-
-/*
-
-<Segment
-        fluid
-        vertical
-        textAlign="center"
-        style={{
-          background: "#343A40",
-          height: "5vh",
-          position: "fixed",
-          bottom: "0",
-          padding: "1em 0em"
-        }}
-      >
-
-*/
