@@ -140,7 +140,7 @@ const App = () => {
         <Header as="h1">Algos 📊</Header>
       </Segment>
       <Container fluid>
-        <Grid columns={2} stackable>
+        <Grid columns={2} stackable style={{ paddingTop: "1.5em" }}>
           <Grid.Column width={3}>
             <MenuContainer menuSelect={menuSelect} />
           </Grid.Column>
@@ -174,7 +174,7 @@ const App = () => {
         }}
       >
         <Header as="h5" textAlign="middle center" style={{ color: "#D1D2D3" }}>
-          Algos is an algorithm visualizer built by Gee-wey Yue, Gordy Lanza,
+          Algos is an algorithm visualizer built by Gee-Wey Yue, Gordy Lanza,
           and Li Xie using React and Semantic-ui. Check out our repo on{" "}
           <a href="https://github.com/Liko/algo-front/">github</a>!
         </Header>
