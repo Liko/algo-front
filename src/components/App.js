@@ -61,11 +61,11 @@ const App = () => {
   };
 
   const controllerMap = {
-    forward: stepForward,
     back: stepBack,
-    reset: stepReset,
     play: stepPlay,
-    pause: stepPause
+    pause: stepPause,
+    forward: stepForward,
+    reset: stepReset
   };
 
   const changeStep = direction => {
@@ -122,7 +122,7 @@ const App = () => {
     });
   };
 
-  useKeyDown(" ", isRunning ? stepPause : stepPlay, true);
+  useKeyDown("p", isRunning ? stepPause : stepPlay, true);
   useKeyDown("ArrowRight", () => changeStep("forward"), false);
   useKeyDown("ArrowLeft", () => changeStep("back"), false);
   useKeyDown("r", () => changeStep("reset"), false);

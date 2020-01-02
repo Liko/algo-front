@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Button } from "semantic-ui-react";
 import OptionSlider from "../components/OptionSlider";
 import ControllerButton from "../components/ControllerButton";
 
@@ -12,6 +12,7 @@ const ControllerContainer = ({
   setArraySize,
   isRunning
 }) => {
+  s;
   const currentlyRunning = label => {
     return (label !== "play" && isRunning) || (label !== "pause" && !isRunning);
   };
@@ -23,6 +24,22 @@ const ControllerContainer = ({
     );
   };
 
+  const emphasisMap = {
+    play: "primary",
+    pause: "primary",
+    forward: "secondary",
+    back: "secondary",
+    reset: "secondary"
+  };
+
+  const iconMap = {
+    play: "play",
+    pause: "pause",
+    forward: "right chevron",
+    back: "left chevron",
+    reset: "undo"
+  };
+
   const mapButtons = () => {
     return Object.keys(controls).map(label => {
       return (
@@ -31,6 +48,8 @@ const ControllerContainer = ({
             label={label}
             disabled={currentlyDisabled(label)}
             handleClick={handleClick}
+            emphasis={emphasisMap[label]}
+            icon={iconMap[label]}
           />
         )
       );
@@ -59,8 +78,12 @@ const ControllerContainer = ({
 
   return (
     <div>
-      {mapButtons()}
-      <Grid stackable stretched={true}>
+      <Grid fluid="true" stackable stretched={true}>
+        <Grid.Column width={16}>
+          <Button.Group labeled icon widths="4">
+            {mapButtons()}
+          </Button.Group>
+        </Grid.Column>
         <Grid.Column width={8}>
           <OptionSlider {...intervalOptions} />
         </Grid.Column>
