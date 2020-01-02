@@ -129,16 +129,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <Container
+      <Segment
         fluid
         vertical
+        inverted
         textAlign="center"
-        style={{ background: "#1A1C1D", height: "5vh" }}
+        verticalAlign="middle"
+        style={{ height: "5vh" }}
       >
-        <Header as="h1" verticalAlign="middle" style={{ color: "#FFF" }}>
-          Algos 📊
-        </Header>
-      </Container>
+        <Header as="h1">Algos 📊</Header>
+      </Segment>
       <Container fluid>
         <Grid columns={2} stackable>
           <Grid.Column width={3}>
@@ -168,6 +168,7 @@ const App = () => {
           height: "5vh",
           bottom: "0",
           padding: "1em 0em",
+          marginTop: "2em",
           "z-index": "1000",
           position: algos.length > 2 ? "relative" : "absolute"
         }}
