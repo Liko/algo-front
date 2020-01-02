@@ -110,12 +110,12 @@ const App = () => {
     changeStep(direction);
   };
 
-  const useKeyDown = (targetKey, callback) => {
-    const handleKeyDown = ({ key }) => {
-      if (key === targetKey) {
-        callback();
-      }
-    };
+  const useKeyDown = (targetKey, callback, canUseWhenPlaying) => {
+    const useable = () => canUseWhenPlaying || canUseWhenPlaying === isRunning;
+
+    const handleKeyDown = ({ key }) =>
+      key === targetKey && useable() && callback();
+
     useEffect(() => {
       window.addEventListener("keydown", handleKeyDown);
       return () => {
@@ -124,10 +124,10 @@ const App = () => {
     });
   };
 
-  useKeyDown(" ", isRunning ? stepPause : stepPlay);
-  useKeyDown("ArrowRight", () => changeStep("forward"));
-  useKeyDown("ArrowLeft", () => changeStep("back"));
-  useKeyDown("r", () => changeStep("reset"));
+  useKeyDown(" ", isRunning ? stepPause : stepPlay, true);
+  useKeyDown("ArrowRight", () => changeStep("forward"), false);
+  useKeyDown("ArrowLeft", () => changeStep("back"), false);
+  useKeyDown("r", () => changeStep("reset"), false);
 
   return (
     <div className="App">
