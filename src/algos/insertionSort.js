@@ -35,7 +35,6 @@ const insertionSort = (size = 10) => {
     i = i + 1;
   }
 
-  console.log("Number of steps: ", steps.length);
   steps.push(arr);
   return steps;
 };

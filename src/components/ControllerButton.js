@@ -1,13 +1,21 @@
 import React from "react";
 import capitalize from "lodash/capitalize";
+import { Button, Icon } from "semantic-ui-react";
 
-const ControllerButton = ({ label, handleClick, disabled }) => {
+const ControllerButton = ({ label, handleClick, disabled, emphasis, icon }) => {
   return (
-    <div>
-      <button disabled={disabled} onClick={() => handleClick(label)}>
+    <Button className={`animated vertical ${emphasis}`}>
+      <Button.Content className="visible" disabled={disabled}>
         {capitalize(label)}
-      </button>
-    </div>
+      </Button.Content>
+      <Button.Content
+        className="hidden"
+        disabled={disabled}
+        onClick={() => handleClick(label)}
+      >
+        <Icon name={icon} />
+      </Button.Content>
+    </Button>
   );
 };
 
