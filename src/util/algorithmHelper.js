@@ -1,5 +1,6 @@
 import bubbleSort from "../algos/bubbleSort";
 import mergeSort from "../algos/mergeSort";
+import quickSort from "../algos/quickSort";
 import selectionSort from "../algos/selectionSort";
 import insertionSort from "../algos/insertionSort";
 
@@ -9,7 +10,7 @@ import cloneDeep from "lodash/cloneDeep";
 // TODO replace placeholder bubbleSort with real sorts when ready
 export const algoMap = {
   "Bubble Sort": bubbleSort,
-  "Quick Sort": bubbleSort,
+  "Quick Sort": quickSort,
   "Merge Sort": mergeSort,
   "Radix Sort": bubbleSort,
   "Tree Sort": bubbleSort,
