@@ -135,7 +135,7 @@ const App = () => {
         inverted
         textAlign="center"
         verticalAlign="middle"
-        style={{ height: "5vh" }}
+        style={{ height: "55px" }}
       >
         <Header as="h1">Algos 📊</Header>
       </Segment>
@@ -165,7 +165,7 @@ const App = () => {
         vertical
         style={{
           background: "#1A1C1D",
-          height: "5vh",
+          height: "45px",
           bottom: "0",
           padding: "1em 0em",
           marginTop: "2em",
