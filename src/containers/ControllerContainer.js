@@ -12,7 +12,6 @@ const ControllerContainer = ({
   setArraySize,
   isRunning
 }) => {
-  s;
   const currentlyRunning = label => {
     return (label !== "play" && isRunning) || (label !== "pause" && !isRunning);
   };
