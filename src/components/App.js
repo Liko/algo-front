@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Grid, Header } from "semantic-ui-react";
+import { Container, Grid, Header, Segment } from "semantic-ui-react";
 import MenuContainer from "../containers/MenuContainer";
 import AlgorithmsContainer from "../containers/AlgorithmsContainer";
 import md5 from "md5"; // This library let's us generate a hashed key for algos
@@ -133,10 +133,11 @@ const App = () => {
     <div className="App">
       <Container
         fluid
+        vertical
         textAlign="center"
         style={{ background: "#343A40", height: "5vh" }}
       >
-        <Header as="h2" style={{ color: "#FFF" }}>
+        <Header as="h2" verticalAlign="middle" style={{ color: "#FFF" }}>
           Algos 📊
         </Header>
       </Container>
@@ -160,18 +161,22 @@ const App = () => {
           </Grid.Column>
         </Grid>
       </Container>
+
       <Container
         fluid
-        textAlign="center"
+        vertical
         style={{
           background: "#343A40",
           height: "5vh",
           position: "fixed",
-          bottom: "0"
+          bottom: "0",
+          padding: "1em 0em"
         }}
       >
-        <Header as="h3" style={{ color: "#FFF" }}>
-          Algos
+        <Header as="h5" textAlign="middle center" style={{ color: "#D1D2D3" }}>
+          Algos is an algorithm visualizer built by Gee-wey Yue, Gordy Lanza,
+          and Li Xie using React and Semantic-ui. Check out our repo on{" "}
+          <a href="https://github.com/Liko/algo-front/">github</a>!
         </Header>
       </Container>
     </div>
@@ -179,3 +184,20 @@ const App = () => {
 };
 
 export default App;
+
+/*
+
+<Segment
+        fluid
+        vertical
+        textAlign="center"
+        style={{
+          background: "#343A40",
+          height: "5vh",
+          position: "fixed",
+          bottom: "0",
+          padding: "1em 0em"
+        }}
+      >
+
+*/
