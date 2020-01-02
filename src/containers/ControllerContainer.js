@@ -78,16 +78,16 @@ const ControllerContainer = ({
   return (
     <div>
       <Grid fluid="true" stackable stretched={true}>
-        <Grid.Column width={16}>
-          <Button.Group labeled icon widths="4">
-            {mapButtons()}
-          </Button.Group>
+        <Grid.Column width={8}>
+          <OptionSlider {...arraySizeOptions} />
         </Grid.Column>
         <Grid.Column width={8}>
           <OptionSlider {...intervalOptions} />
         </Grid.Column>
-        <Grid.Column width={8}>
-          <OptionSlider {...arraySizeOptions} />
+        <Grid.Column width={16}>
+          <Button.Group labeled icon widths="4">
+            {mapButtons()}
+          </Button.Group>
         </Grid.Column>
       </Grid>
     </div>
