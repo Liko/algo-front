@@ -13,8 +13,16 @@ const OptionSlider = ({
 }) => {
   return (
     <Grid stackable stretched={true}>
-      <Grid.Column width={12}>
-        <Segment>
+      <GridColumn width={6} style={{ height: "60px" }}>
+        <Label color="orange">
+          <p>
+            {label}
+            {labelInfo}
+          </p>
+        </Label>
+      </GridColumn>
+      <Grid.Column width={10} style={{ height: "60px" }}>
+        <Segment style={{ padding: "2px" }}>
           <Slider
             color="orange"
             inverted={false}
@@ -28,12 +36,6 @@ const OptionSlider = ({
           />
         </Segment>
       </Grid.Column>
-      <GridColumn width={4}>
-        <Label color="orange">
-          <p>{label}</p>
-          <p>{labelInfo} </p>
-        </Label>
-      </GridColumn>
     </Grid>
   );
 };

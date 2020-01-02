@@ -5,11 +5,13 @@ import {
   clearStatus
 } from "../util/algorithmHelper";
 
+import cloneDeep from "lodash/cloneDeep";
+
 const mergeSort = (size = 10) => {
   const array = generateRandomArray(size);
 
   // Initialize steps, which will keep track of array element positions at each cycle
-  const steps = [[...array]];
+  const steps = [cloneDeep(array)];
 
   const mergeSortReal = array => {
     //if the array length is less than 2, return, which will in the future invoke the merger method
@@ -26,6 +28,10 @@ const mergeSort = (size = 10) => {
 
   const merger = (left, right) => {
     const array = [];
+    let finalMerger = false;
+
+    //mark finalMerger as true when on last merger step
+    left.length + right.length === size && (finalMerger = true);
 
     while (left.length && right.length) {
       //keep track of left and right, relative to the array as a whole (prevStep)
@@ -48,11 +54,19 @@ const mergeSort = (size = 10) => {
       if (left[0].value < right[0].value) {
         array.push(left.shift());
       } else {
-        //can express this condition as an insertion of right value to before left value
+        //this condition means we need to visualize insertion
         array.push(right.shift());
         let newStep = clearStatus(prevStep);
         const insert = newStep.splice(rightIndex, 1)[0];
         newStep.splice(leftIndex, 0, insert);
+
+        //if we are on the final recursion, mark all element up to current insert as sorted
+        if (finalMerger) {
+          newStep.forEach(
+            el => el.value <= insert.value && (el.isSorted = true)
+          );
+        }
+
         addInsertStep(leftIndex, newStep, steps, "moving");
       }
     }

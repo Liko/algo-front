@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import OptionSlider from "../components/OptionSlider";
 import ControllerButton from "../components/ControllerButton";
 
@@ -25,15 +25,15 @@ const ControllerContainer = ({
 
   const mapButtons = () => {
     return Object.keys(controls).map(label => {
-      if (currentlyRunning(label)) {
-        return (
+      return (
+        currentlyRunning(label) && (
           <ControllerButton
             label={label}
             disabled={currentlyDisabled(label)}
             handleClick={handleClick}
           />
-        );
-      }
+        )
+      );
     });
   };
 
@@ -59,10 +59,15 @@ const ControllerContainer = ({
 
   return (
     <div>
-      <Button fluid>ControllerContainer</Button>
       {mapButtons()}
-      <OptionSlider {...intervalOptions} />
-      <OptionSlider {...arraySizeOptions} />
+      <Grid stackable stretched={true}>
+        <Grid.Column width={8}>
+          <OptionSlider {...intervalOptions} />
+        </Grid.Column>
+        <Grid.Column width={8}>
+          <OptionSlider {...arraySizeOptions} />
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };
