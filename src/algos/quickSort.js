@@ -2,93 +2,117 @@
 
 import {
   generateRandomArray,
-  addCheckOrSwapStep
+  addCheckOrSwapStep,
+  addInsertStep,
+  clearStatus
 } from "../util/algorithmHelper";
 
 const quickSort = (size = 10) => {
-  // const arr = generateRandomArray(size);
-  const arr = [10, 7, 8, 9, 1, 2, 3, 4, 6, 5];
+  const array = generateRandomArray(size);
+  // const array = [10, 7, 8, 9, 1, 2, 3, 4, 6, 5];
+  const steps = [[...array]];
   const left = 0;
   const right = size - 1; // always pivot around the last element
 
-  const swap = (arr, first, second) => {
-    let temp = arr[first];
-    arr[first] = arr[second];
-    arr[second] = temp;
-  };
-
-  const partition = (arr, left, right) => {
-    let pivot = arr[Math.floor((right + left) / 2)];
+  // Quick sorts work by recursively picking a pivot in an array, evaluating all elements before/after the pivot against the value of the element at the pivot, and swapping elements around such that all elements before the pivot are less than the value of the pivot and all elements after the pivot are greater in value.
+  const partition = (array, left, right) => {
+    let pivotPosition = Math.floor((right + left) / 2);
+    let pivot = array[pivotPosition]; // Pivot around the middle
     let i = left;
     let j = right;
+    let prevStep = null;
 
+    // Because our pivot is in the middle, all elements have been evaluated when the left/right cross over.
     while (i <= j) {
-      while (arr[i] < pivot) {
+      // Evaluate elements left of the pivot until one is found with a higher value than the pivot
+      while (array[i].value < pivot.value) {
+        // Set the status of the current left/right pointers to 'checking', all other elements to 'idle'
+        prevStep = steps[steps.length - 1];
+        addCheckOrSwapStep(
+          i,
+          pivotPosition,
+          clearStatus(prevStep),
+          steps,
+          "checking"
+        );
         i++;
+        console.log(i);
       }
-      while (arr[j] > pivot) {
+
+      prevStep = steps[steps.length - 1];
+      addCheckOrSwapStep(
+        i,
+        pivotPosition,
+        clearStatus(prevStep),
+        steps,
+        "checking"
+      );
+
+      // Check the same for elements right of the pivot
+      while (array[j].value > pivot.value) {
+        // Set the status of the current left/right pointers to 'checking', all other elements to 'idle'
+        prevStep = steps[steps.length - 1];
+        addCheckOrSwapStep(
+          j,
+          pivotPosition,
+          clearStatus(prevStep),
+          steps,
+          "checking"
+        );
         j--;
       }
+
+      prevStep = steps[steps.length - 1];
+      addCheckOrSwapStep(
+        j,
+        pivotPosition,
+        clearStatus(prevStep),
+        steps,
+        "checking"
+      );
+
+      // If elements that need to be swapped were found, swap them
+      // || == j
       if (i <= j) {
-        // [arr[i], arr[j]] = [arr[j], arr[i]];
-        swap(arr, i, j);
+        // Swap elements, store the new positions to step, then move the i/j pointers
+        if (i !== j) {
+          // swap(array, i, j);
+          [array[i], array[j]] = [array[j], array[i]];
+          addCheckOrSwapStep(i, j, array, steps, "moving");
+        }
+
         i++;
         j--;
       }
     }
-    return i;
+    return i; // this determines the next element the sort will pivot around
   };
 
-  const quickSortReal = (arr, left, right) => {
-    if (arr.length > 1) {
-      let index = partition(arr, left, right);
+  // Recursively pick and evaluate all elements around a partition, until the elements are sorted.
+  const quickSortReal = (array, left, right) => {
+    // console.log(array);
+    if (array.length > 1) {
+      let index = partition(array, left, right);
 
+      // If the left pointer is less than the index, then there are still elements to the left of the index which needs to be swapped, so the quick sort is called recursively until the elements left of the index are sorted
       if (left < index - 1) {
-        quickSortReal(arr, left, index - 1);
+        quickSortReal(array, left, index - 1);
       }
 
+      // Same goes for the elements to the right of the index
       if (index < right) {
-        quickSortReal(arr, index, right);
+        quickSortReal(array, index, right);
       }
     }
-    console.log(arr);
-    return arr;
+    // steps.push(array); // Shows algo works as expected
+    return array;
   };
 
-  return quickSortReal(arr, left, right);
+  quickSortReal(array, left, right);
+
+  // add a final completion step
+  steps.push(clearStatus(steps[steps.length - 1]));
+  return steps;
 };
-
-// Below is my first attempt based
-// const quickSort = (size = 10) => {
-//   // const arr = generateRandomArray(size);
-//   const arr = [10, 7, 8, 9, 1, 5];
-//   const left = 0;
-//   const right = size - 1; // always pivot around the last element
-
-//   const partition = (arr, left, right) => {
-//     const i = left - 1; // index of smaller element, effectively starts at 0
-//     const pivot = arr[right]; // we will pivot around the last element
-
-//     for (j = 0; j < pivot; j++) {
-//       if (arr[j] < pivot) {
-//         i++;
-//         [arr[i], arr[j]] = [arr[j], arr[i]];
-//       }
-//     }
-//     [arr[i + 1], arr[pivot]] = [arr[pivot], arr[i + 1]];
-//     console.log(arr);
-//     return i + 1;
-//   };
-
-//   const quickSortReal = (arr, left, right) => {
-//     if (left < right) {
-//       const partitionIndex = partition(arr, left, right);
-//       quickSortReal(arr, left, partitionIndex - 1);
-//       quickSortReal(arr, partitionIndex + 1, right);
-//     }
-//   };
-
-//   return quickSortReal(arr, left, right);
-// };
 
 export default quickSort;
