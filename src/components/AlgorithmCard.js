@@ -11,7 +11,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
 
   const maxData = Math.max(...currentData.map(i => i.value));
   let height = 0;
-  let barHeight = (0.35 * window.innerHeight) / currentData.length;
+  let barHeight = (0.3 * window.innerHeight) / currentData.length;
 
   useEffect(() => {
     setCurrentData(algo.steps[step]);
