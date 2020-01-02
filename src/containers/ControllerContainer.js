@@ -25,15 +25,15 @@ const ControllerContainer = ({
 
   const mapButtons = () => {
     return Object.keys(controls).map(label => {
-      if (currentlyRunning(label)) {
-        return (
+      return (
+        currentlyRunning(label) && (
           <ControllerButton
             label={label}
             disabled={currentlyDisabled(label)}
             handleClick={handleClick}
           />
-        );
-      }
+        )
+      );
     });
   };
 
