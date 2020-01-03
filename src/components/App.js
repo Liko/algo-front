@@ -128,18 +128,14 @@ const App = () => {
   useKeyDown("r", () => changeStep("reset"), false);
 
   return (
-    <div className="App">
-      <Segment
-        fluid
-        vertical
-        inverted
-        textAlign="center"
-        verticalAlign="middle"
-        style={{ height: "55px" }}
-      >
+    <div
+      className="App"
+      style={{ display: "flex", minHeight: "100vh", flexDirection: "column" }}
+    >
+      <Segment vertical inverted textAlign="center" style={{ height: "55px" }}>
         <Header as="h1">Algos 📊</Header>
       </Segment>
-      <Container fluid>
+      <Container fluid style={{ minHeight: "87vh" }}>
         <Grid columns={2} stackable style={{ paddingTop: "1.5em" }}>
           <Grid.Column width={3}>
             <MenuContainer menuSelect={menuSelect} />
@@ -166,10 +162,9 @@ const App = () => {
         style={{
           background: "#1A1C1D",
           height: "45px",
-          bottom: "0",
           padding: "1em 0em",
           marginTop: "2em",
-          position: algos.length > 2 ? "relative" : "absolute"
+          flex: "1"
         }}
       >
         <Header as="h5" style={{ color: "#D1D2D3" }}>
