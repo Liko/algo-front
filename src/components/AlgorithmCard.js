@@ -11,7 +11,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
 
   const maxData = Math.max(...currentData.map(i => i.value));
   let height = 0;
-  let barHeight = (0.35 * window.innerHeight) / currentData.length;
+  let barHeight = (0.3 * window.innerHeight) / currentData.length;
 
   useEffect(() => {
     setCurrentData(algo.steps[step]);
@@ -67,7 +67,7 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
     <Card fluid onClick={() => removeAlgo(algo.key)}>
       <Card.Content>
         <p>
-          {algo.name} - step {step}
+          {algo.name} - step {step} of {algo.steps.length - 1}
         </p>
         <div style={{ height }}>{mapBars()}</div>
       </Card.Content>

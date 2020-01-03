@@ -17,7 +17,7 @@ const App = () => {
 
   const menuSelect = algoName => {
     if (algos.length >= 8)
-      return alert("You can only selected 8 algorithms at a time.");
+      return alert("You can only select up to 8 algorithms at a time.");
 
     const algo = {
       name: algoName,
@@ -129,7 +129,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <Segment vertical inverted textAlign="center" style={{ height: "5vh" }}>
+      <Segment
+        fluid
+        vertical
+        inverted
+        textAlign="center"
+        verticalAlign="middle"
+        style={{ height: "55px" }}
+      >
         <Header as="h1">Algos 📊</Header>
       </Segment>
       <Container fluid>
@@ -158,7 +165,7 @@ const App = () => {
         textAlign="center"
         style={{
           background: "#1A1C1D",
-          height: "5vh",
+          height: "45px",
           bottom: "0",
           padding: "1em 0em",
           marginTop: "2em",

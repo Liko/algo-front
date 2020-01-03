@@ -4,15 +4,13 @@ import { Button, Icon } from "semantic-ui-react";
 
 const ControllerButton = ({ label, handleClick, disabled, emphasis, icon }) => {
   return (
-    <Button className={`animated vertical ${emphasis}`}>
-      <Button.Content className="visible" disabled={disabled}>
-        {capitalize(label)}
-      </Button.Content>
-      <Button.Content
-        className="hidden"
-        disabled={disabled}
-        onClick={() => handleClick(label)}
-      >
+    <Button
+      className={`animated vertical ${emphasis}`}
+      disabled={disabled}
+      onClick={() => handleClick(label)}
+    >
+      <Button.Content className="visible">{capitalize(label)}</Button.Content>
+      <Button.Content className="hidden">
         <Icon name={icon} />
       </Button.Content>
     </Button>
