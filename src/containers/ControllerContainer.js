@@ -84,10 +84,8 @@ const ControllerContainer = ({
         <Grid.Column width={8}>
           <OptionSlider {...intervalOptions} />
         </Grid.Column>
-        <Grid.Column width={16}>
-          <Button.Group labeled icon widths="4">
-            {mapButtons()}
-          </Button.Group>
+        <Grid.Column width={16} textAlign="center">
+          <Button.Group widths="4">{mapButtons()}</Button.Group>
         </Grid.Column>
       </Grid>
     </div>
