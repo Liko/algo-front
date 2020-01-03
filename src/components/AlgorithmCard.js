@@ -40,11 +40,11 @@ const AlgorithmCard = ({ algo, removeAlgo, step }) => {
   };
 
   const calculateBarColor = (item, index) => {
-    if (item.status === "checking") return "yellow";
-    else if (item.status === "moving") return "salmon";
-    else if (algo.steps[step] === lastStep) return "lightgreen";
-    else if (item.isSorted) return "lightblue";
-    else return "orange";
+    if (item.status === "checking") return "#F0C808";
+    else if (item.status === "moving") return "#DD1C1A";
+    else if (algo.steps[step] === lastStep) return "#44AF69";
+    else if (item.isSorted) return "#06AED5";
+    else return "#FFF1D0";
   };
 
   const mapBars = () => {

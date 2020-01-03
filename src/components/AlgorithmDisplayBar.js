@@ -15,10 +15,13 @@ const AlgorithmDisplayBar = ({ item, color, style }) => {
         <div
           className="details"
           style={{
-            backgroundColor: color
+            backgroundColor: color,
+            verticalAlign: "middle"
           }}
         >
-          <p className="label">{showCorrectBars()}</p>
+          <p className="label" style={{ color: "black" }}>
+            {showCorrectBars()}
+          </p>
         </div>
       </div>
     </animated.div>
