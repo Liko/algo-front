@@ -2,7 +2,7 @@
 
 [Algos](http://www.algos.life) is an algorithm visualizer built by Gee-Wey Yue, Gordy Lanza, and Li Xie using React.
 
-![Imgur](https://i.imgur.com/WWGHKi0.gif)
+![Imgur](https://i.imgur.com/VZbMRcr.gif)
 
 ## Motivation
 
